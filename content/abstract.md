@@ -1,16 +1,18 @@
 ## Abstract
 <!-- Context      -->
-One of the biggest challenges of publishing Linked Open Data is the maintainability of its interfaces. Linked Data interfaces exist in multiple shapes, typically datadumps or SPARQL-endpoints, and require different amounts of technical resources. Given that organisations have a website for communicating about their subjects, this interface can be reused and extended with machine-readable data.
+Maintaining an Open Dataset comes at an extra recurring cost when it is published in a dedicated Web interface.
 <!-- Need         -->
-Embedding Linked Data over multiple webpages gives uncertainty on how the organisation or end-users can consume this fragmented data. Data publishers currently lack tooling to test these new kind of interfaces.
+As there is not often a direct financial return from publishing a dataset publicly, these extra costs need to be minimized.
 <!-- Task         -->
-We extended the modular query engine Comunica to support exposing a dataset with partial collection views by implementing pagination controls and reading Linked Data inside HTML documents.
+Therefore want to explore reusing existing infrastructure by enriching existing websites with Linked Data.
 <!-- Object       -->
-This paper demonstrates a real-live website annotated with JSON-LD snippets and how a spreadsheet can be harvested from this website by using Comunica. 
+In this demonstrator, we advised the data owner to annotate a digital heritage website with JSON-LD snippets, resulting in a dataset of <todo style="color: red;">? (todo) triples</todo> that is now available and officially maintained. <!--TODO: how much data was in te end published? Can we have some stats about the total data dump? -->
+<!--Only an initial investment is required to have Linked Data snippets added to its corresponding webpages.-->
+The website itself is paged, and thus hydra partial collection view controls were added in the snippets.
+We then extended the modular query engine [Comunica](http://comunica.linkeddatafragments.org) to support following page controls and extracting data from HTML documents while querying.
 <!-- Findings     -->
-We found that reusing your website for data publishing enables a cost-efficient interface for maintaining an up-to-date dataset. Only an initial investment is required to have Linked Data snippets added to its corresponding webpages.
-Federated querying with your website becomes possible as Comunica already supports heterogeneous interfaces.
-<!-- Conclusion   -->
-Organisations can test if the Linked Data on their websites is automatically reusable by extracting a spreadsheet. This gives confidence that a Linked Data interface is not necessarily a seperate infrastructure.
-<!-- Perspectives -->
-In future work, other hypermedia controls then pagination need to be researched to query a website more efficiently.
+This way, a SPARQL or GraphQL query over multiple heterogeneous data sources can power automated data reuse.
+While the query performance on such an interface is visibly poor, it becomes easy to create composite data dumps.
+<!-- Conclusion and Perspectives -->
+As a result of implementing these building blocks in Comunica, any paged collection now becomes queryable by the query engine, as well as any HTML page with or without any of the supported hypermedia building blocks.
+This enables heterogenous data interfaces to share functionality and become technically interoperable.
