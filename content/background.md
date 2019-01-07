@@ -1,0 +1,8 @@
+##  Background
+{:#background}
+
+Rich snippets are script-tags inside a HTML document having as application type JavaScript Object Notation for Linked Data (JSON-LD). JSON is considered the most popular data serialisation for the Web and can be extended with an additional context, supporting Linked Data. Website builders currently use this technique to mark-up their websites using the schema.org vocabulary to improve their search results. Also other datastandards (DCTerms, Wikidata...) can be used to describe  domain-specific metadata.
+
+Hypermedia-driven Web Application Programming Interfaces (APIs) allow clients to automatically interact with the server interface. This loose coupling of client and server is one the goals of the REST architecture. Applying this to rich snippets means that a client can discover how it can discover other relevant webpages containing rich snippets. A common hypermedia control is pagination and can be described with the Hydra vocabulary. A next webpage or fragment is described with hydra:next, vice versa hydra:previous.
+
+Comunica is a modular query engine for querying heterogeneous Linked Data interfaces. It uses actors that can resolve certain tasks. The communication between two actors happens through a mediator and a bus. A certain functionality is available through a bus. This means that multiple actors with similar functionality, but different implementations, can be subscribed to the same bus. The mediator takes care of choosing the best actor for the requesting actor.
