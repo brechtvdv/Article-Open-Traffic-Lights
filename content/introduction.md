@@ -1,10 +1,10 @@
 ## Introduction
 {:#introduction}
 
-This is a great article on the [Semantic Web](cite:cites semanticweb), written in Markdown.
+The Linked Open Data cloud is growing every year. More and more organisations see the benefits of publishing their data as Linked Open Data, but struggle with setting up or maintaining the infrastructure in order to publish this data. This is often circumvented by collaborating on a centralized platform that aggregates, transforms and publishes the metadata. While this approach satisfies the many, there are still a lot of organisations who don't have the technical or financial means to publish their data in a structured way. What they do have is a website showcasing their collections. To leverage this for publishing Linked Open Data, their webpages can be annotated in the same way rich snippets work.
 
-Make sure to [write your document effectively](http://www.treesmapsandtheorems.com/pdfs/TM&Th-2.0-summary.pdf)!
+Rich snippets are highlighted search results of search engines in order to get higher Click Through Rates (CTR). These results have extra accessories such as thumbnails and are based on structured data found in websites. The datamodel behind this is restricted to the schema.org vocabulary which specializes in e.g. businesses and creative works. In this paper we'll call the mark-up to enable rich snippets also rich snippets, because these are code snippets with structured -rich- data. Not only search engines, but also smart user agents can benefit from these rich snippets.
 
-Write proper introduction.
-More information on snippets like this can be found on the [ScholarMarkdown wiki](https://github.com/rubensworks/ScholarMarkdown/wiki/Snippets).
-{:.todo}
+One smart user agent is Comunica. This tool can run federated queries over heterogeneous Web APIs such as data dumps, SPARQL-endpoints, Linked Data documents and Triple Pattern Fragments. By applying hypermedia controls to the rich snippets, Comunica can traverse your website and fetch the rich snippets. This allows end-users to run SPARQL-queries over websites and other Linked Data interfaces such as Wikidata and Europeana.
+
+In this article we first describe some background, then how Comunica has been extended to enable querying with rich snippets. Additionally, we demonstrate a website of historical newspapers that applied rich snippets for publishing its content as Linked Open Data.

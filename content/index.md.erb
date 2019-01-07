@@ -1,14 +1,23 @@
 ---
-title: "My Awesome Article"
+title: "Rich snippets as a low-cost Linked Open Data publishing strategy"
 ---
 <header markdown="1">
 # <%= @item[:title] %>
 
 {:#authors}
-- <%= person 'John Doe', 'http://www.example.org/', 'http://www.example.org/#me' %>
+- <%= person 'Brecht Van de Vyvere', 'https://brechtvdv.github.io/', 'https://w3id.org/people/brechtvdv/#me' %>
+- <%= person 'Pieter Colpaert', 'https://pietercolpaert.be', 'https://pietercolpaert.be/#me' %>
+- <%= person 'Ruben Verborgh', 'https://ruben.verborgh.org/', 'https://ruben.verborgh.org/profile/#me' %>
 
 {:#affiliations}
-- {:#myaffiliation} Awesome Inc.
+- {:#idlab} IDLab,
+            Department of Electronics and Information Systems,
+            Ghent University – imec
+
+<section class="context" markdown="block">
+## In reply to
+- [WHiSe III call for short vision papers](http://whise.kmi.open.ac.uk/){:rel="as:inReplyTo"}
+</section>
 
 <%= section 'abstract' %>
 </header>
@@ -16,6 +25,12 @@ title: "My Awesome Article"
 <main>
   <!-- Add sections by specifying their file name, excluding the '.md' suffix. -->
   <%= section 'introduction'  %>
+  <%= section 'background'  %>
+  <%= section 'implementation'  %>
+  <%= section 'demonstrator'  %>
+  <%= section 'conclusion'  %>
 </main>
 
-<footer></footer>
+<footer>
+  <%= section 'acknowledgements'  %>
+</footer>
