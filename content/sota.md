@@ -1,5 +1,5 @@
-##  Background
-{:#background}
+##  State Of The Art
+{:#sota}
 
 Rich snippets are script-tags inside a HTML document having as application type JavaScript Object Notation for Linked Data (JSON-LD). JSON is considered the most popular data serialisation for the Web and can be extended with an additional context, supporting Linked Data. Website builders currently use this technique to mark-up their websites using the schema.org vocabulary to improve their search results. Also other datastandards (DCTerms, Wikidata...) can be used to describe  domain-specific metadata.
 
