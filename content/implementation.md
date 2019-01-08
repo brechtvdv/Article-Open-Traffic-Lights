@@ -16,18 +16,44 @@ Every newspaper describes its next and previous newspaper using Hydra partial co
 
 ### Building blocks Comunica
 
-Every piece of functionality in Comunica can be implemented as a seperate building block with actors. Those that share same functionality, but with different implementations, can be grouped with a communication channel called a 'bus'. Interaction between actors is possible through a mediator which wraps around a bus and makes sure that a requesting actor only gets one result. This result depends on the configuration of the mediator, e.g. a race mediator will return the response of the first actor that answers the call. In order for Comunica to work with hetarchief.be it needs to support pagination controls when the interface is not a TPF interface and needs to be capable of parsing data snippets from HTML documents.
+{:.comment data-author="RT"}
+Consider moving this first paragraph to the introduction or a related work section.
 
-As Comunica already supports a hypermedia interface, the TPF interface, a bus BusRdfResolveHypermedia for resolving hypermedia controls already exists. A new actor ActorRdfResolveHypermediaNextPage that only returns a search form containing a Hydra partial collection view next link, vice versa for previous links, is created and subscribed to the same bus as for the TPF hypermedia controls. Extracting hydra controls from RDF quads is already implemented with the actor ActorRdfMetadataExtractHydraControls. This shows that modularizing code pays off when similar functionalities are needed.
+Every piece of functionality in Comunica can be implemented as seperate building blocks based on the _actor_ programming model, where each actor can respond to a specific action. Actors that share same functionality, but with different implementations, can be grouped with a communication channel called a _bus_. Interaction between actors is possible through a _mediator_ that wraps around a bus to get an action's result from a single actor. This result depends on the configuration of the mediator, e.g. a race mediator will return the response of the actor that is able to reply the earliest.
 
-Most common Linked Data formats (Turtle, TriG, RDF/XML, JSON-LD...) are already supported by Comunica. An actor ActorRdfParseHtmlScript for parsing HTML documents is added to the same RDF parsers bus. This intermediate parser searches for data snippets and passes these back into the RDF parsers bus. In case of a JSON-LD snippet, the body of a script tag  `<script type="application/ld+json">` will be parsed by the JSON-LD parse actor.
+To make Comunica work with hetarchief.be, two additional actors were needed.
+First, we needed a generic actor to support pagination over any kind of hypermedia interface.
+Secondly, an actor was needed to parse JSON-LD data snippets from HTML documents.
+We will explain these two actors in more detail hereafter.
 
-Adding these two actors allows Comunica to query over a paged collection that is embedded through data snippets. As federated querying comes out-of-the-box with Comunica this cultural heritage collection can now be investigated with other knowledge bases (cfr. Wikidata). [](#federated-querying-comunica) fetches 17 newspaper pages in 1 minute 25 seconds. Although this is a bad user perceived performance, composite data dumps can be extracted for more performant Linked Data interfaces.
+{:.comment data-author="RT"}
+I would not go into the specifics of things like "Hydra partial collection view next link" here, I would just call this a "next page link". But you can elaborate on that in another section/paragraph.
+
+`BusRdfResolveHypermedia` is a bus in Comunica that resolves hypermedia controls from sources,
+Currently, this bus only contains an actor that resolves controls for TPF interfaces.
+We added a new actor (`ActorRdfResolveHypermediaNextPage`) to this bus that returns a search form containing a Hydra partial collection view next link, vice versa for previous links.
+<del class="comment" data-author="RT">Extracting hydra controls from RDF quads is already implemented with the actor ActorRdfMetadataExtractHydraControls. This shows that modularizing code pays off when similar functionalities are needed.</del>
+
+The parsing of most common Linked Data formats (Turtle, TriG, RDF/XML, JSON-LD...) are already supported by Comunica.
+However, no parser for extracting data snippets from HTML documents existed yet.
+That is why we added an actor (`ActorRdfParseHtmlScript`) for parsing such HTML documents.
+This intermediate parser searches for data snippets and forwards these to their respective RDF parser.
+In case of a JSON-LD snippet, the body of a script tag  `<script type="application/ld+json">` will be parsed by the JSON-LD parse actor.
+
+By adding these two actors to Comunica, we can now query over a paged collection that is declaratively described with data snippets. As federated querying comes out-of-the-box with Comunica, this cultural heritage collection can now be queried together with other knowledge bases (cfr. Wikidata). For example, [](#federated-querying-comunica) fetches 17 newspaper pages in 1 minute 25 seconds. 
+
+{:.comment .rephrase data-author="RT"}
+Don't degrade your own work :-) First start by saying that the first result already appears after x seconds. And all results are available after 1,5 minutes. Be sure to explain why it takes this long, and give TPF as an example of a method to improve performance.
+
+Although this is a bad user perceived performance, composite data dumps can be extracted for more performant Linked Data interfaces.
+
+{:.comment data-author="RT"}
+I'm wondering if this query example is needed if you already have the codepen. You could for example setup you own [Comunica jQuery Widget](https://github.com/comunica/jQuery-Widget.js), and plug in your own config file.
 
 <figure id="federated-querying-comunica" class="listing">
 ````/code/federated-querying-comunica.txt````
 <figcaption markdown="block">
-SPARQL-query over a paged collection of hetarchief.be and the TPF interface of Wikidata using the command line interface of Comunica. Heterogeneous interfaces can be added without extra effort.
+SPARQL-query over a paged collection of hetarchief.be and the TPF interface of Wikidata using the JavaScript-based command line interface of Comunica. <del class="comment" data-author="RT">Heterogeneous interfaces can be added without extra effort.</del>
 </figcaption>
 </figure>
 
