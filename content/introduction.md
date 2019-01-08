@@ -11,5 +11,5 @@ Website maintainers are currently using JSON-LD structured data snippets to atta
 
 Comunica is a Linked Data user agent that can run federated queries over several heterogeneous Web APIs: data dumps, SPARQL-endpoints, Linked Data documents and Triple Pattern Fragments. This tool is created in the first place as a replacement for the TPF client so maintainment becomes easier. Modules with certain functionality can be added or removed depending on the configuration. This also allows other hypermedia driven clients to be created.
 
-In this article, first we describe how hetarchief.be is enriched with JSON-LD snippets and how this enables federated querying with Comunica by adding two building blocks. After this, we demonstrate how a composite data dump can easily be generated. Finally, we discuss our conclusion.
+In this article, first we describe how hetarchief.be is enriched with JSON-LD snippets and how this enables federated querying with Comunica by adding two building blocks. After this, we demonstrate how a data dump can easily be generated. Finally, we discuss our conclusion.
 
