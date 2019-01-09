@@ -1,8 +1,18 @@
 ##  State Of The Art
 {:#sota}
 
-Rich snippets are script-tags inside a HTML document having as application type JavaScript Object Notation for Linked Data (JSON-LD). JSON is considered the most popular data serialisation for the Web and can be extended with an additional context, supporting Linked Data. Website builders currently use this technique to mark-up their websites using the schema.org vocabulary to improve their search results. Also other datastandards (DCTerms, Wikidata...) can be used to describe  domain-specific metadata.
+### Comunica
 
-Hypermedia-driven Web Application Programming Interfaces (APIs) allow clients to automatically interact with the server interface. This loose coupling of client and server is one the goals of the REST architecture. Applying this to rich snippets means that a client can discover how it can discover other relevant webpages containing rich snippets. A common hypermedia control is pagination and can be described with the Hydra vocabulary. A next webpage or fragment is described with hydra:next, vice versa hydra:previous.
+Every piece of functionality in Comunica can be implemented as seperate building blocks based on the _actor_ programming model, where each actor can respond to a specific action. Actors that share same functionality, but with different implementations, can be grouped with a communication channel called a _bus_. Interaction between actors is possible through a _mediator_ that wraps around a bus to get an action's result from a single actor. This result depends on the configuration of the mediator, e.g. a race mediator will return the response of the actor that is able to reply the earliest.
 
-Comunica is a modular query engine for querying heterogeneous Linked Data interfaces. It uses actors that can resolve certain tasks. The communication between two actors happens through a mediator and a bus. A certain functionality is available through a bus. This means that multiple actors with similar functionality, but different implementations, can be subscribed to the same bus. The mediator takes care of choosing the best actor for the requesting actor.
+<figure id="actor">
+<center>
+<img src="img/actor-mediator-bus.svg">
+</center>
+<figcaption markdown="block">
+Actor 0 initiates an action to a mediator. The mediator communicates through a bus with all actors 1, 2 and 3 that are able to solve the action and gives back the most favorable result according to its configuration.
+</figcaption>
+</figure>
+
+### Hydra partial collection views
+
