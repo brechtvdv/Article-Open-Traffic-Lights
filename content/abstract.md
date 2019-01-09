@@ -6,7 +6,7 @@ As there is not often a direct financial return from publishing a dataset public
 <!-- Task         -->
 Therefore we want to explore reusing existing infrastructure by enriching existing websites with Linked Data.
 <!-- Object       -->
-In this demonstrator, we advised the data owner to annotate a digital heritage website with JSON-LD snippets, resulting in a dataset of <todo style="color: red;">? (todo) triples</todo> that is now available and officially maintained. <!--TODO: how much data was in te end published? Can we have some stats about the total data dump? -->
+In this demonstrator, we advised the data owner to annotate a digital heritage website with JSON-LD snippets, resulting in a dataset of more than three million triples that is now available and officially maintained. <!--TODO: how much data was in te end published? Can we have some stats about the total data dump? -->
 <!--Only an initial investment is required to have Linked Data snippets added to its corresponding webpages.-->
 The website itself is paged, and thus hydra partial collection view controls were added in the snippets.
 We then extended the modular query engine [Comunica](http://comunica.linkeddatafragments.org) to support following page controls and extracting data from HTML documents while querying.

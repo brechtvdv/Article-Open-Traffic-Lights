@@ -1,4 +1,4 @@
-##  State Of The Art
+##  Background
 {:#sota}
 
 ### Comunica
@@ -16,3 +16,4 @@ Actor 0 initiates an action to a mediator. The mediator communicates through a b
 
 ### Hydra partial collection views
 
+Open Data is filled with collections of members (hotel ammenities, road works etc.). These related resources can be grouped as members of a collection using the Hydra vocabulary. When the size of mebers is too big, data owners can fragment this into collection views. Each view represents a part of the collection to keep the Web API responses lightweight. In the case of hetarchief.be represents each newspaper HTTP document one view of the collection of newspapers. These views are linked together with partial collection view controls: previous, next, first and last. This allows a client to fetch all members of the collection.
