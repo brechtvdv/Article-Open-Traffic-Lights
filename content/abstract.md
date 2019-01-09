@@ -14,5 +14,5 @@ We then extended the modular query engine [Comunica](http://comunica.linkeddataf
 This way, a SPARQL or GraphQL query over multiple heterogeneous data sources can power automated data reuse.
 While the query performance on such an interface is visibly poor, it becomes easy to create composite data dumps.
 <!-- Conclusion and Perspectives -->
-As a result of implementing these building blocks in Comunica, any paged collection now becomes queryable by the query engine, as well as any HTML page with or without any of the supported hypermedia building blocks.
+As a result of implementing these building blocks in Comunica, any paged collection and enriched HTML page now becomes queryable by the query engine.
 This enables heterogenous data interfaces to share functionality and become technically interoperable.
