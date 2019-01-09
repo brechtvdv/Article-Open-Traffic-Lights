@@ -18,5 +18,9 @@ Website maintainers are currently using [JSON-LD](https://json-ld.org/spec/lates
 
 [Comunica](cite:cites taelman_iswc_2018) is a Linked Data user agent that can run federated queries over several heterogeneous Web APIs, such as data dumps, SPARQL-endpoints, Linked Data documents and Triple Pattern Fragments. This engine has been developed to make it easy to plug in specific types of functionality as separate modules. Such modules can be added or removed depending on the configuration. As such, by looking for affordances in Web APIs more intelligent user agents can be created.
 
-In this article, first we describe how hetarchief.be is enriched with JSON-LD snippets and how this enables federated querying with Comunica by adding two building blocks. After this, we demonstrate how a data dump can easily be generated. Finally, we discuss our conclusion.
+First we describe how hetarchief.be is enriched with JSON-LD snippets. Next, we explain how we allow Comunica to query over this and other sources by adding two building blocks.
+After this, we demonstrate how a custom data dump can be created by an end-user that wants to further analyze this data, for instance in spreadsheet software.
+The online version of this paper embeds this demo and can be tested live.
+We then give a short background of the Comunica tool and the Hydra partial collection views.
+Finally, we conclude the demonstrator with a discussion and perspective on future work.
 
