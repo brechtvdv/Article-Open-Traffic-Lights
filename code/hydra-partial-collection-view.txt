@@ -1,0 +1,8 @@
+{
+  "@context": "https://www.w3.org/ns/hydra/context.jsonld",
+  "@id": "https://hetarchief.be/media/de-school-op-het-front-studiebladen-van-sursum-corda/CMEPpOVIRqYiVZSYd3Q3k8tL",
+  "previous": "https://hetarchief.be/media/vrij-belgi%C3%AB/B1IVhaOMLFgCUGNJkVGuZH3S",
+  "next": "https://hetarchief.be/media/vrij-belgi%C3%AB/J1cnCMfndMbBNrde9VxIyVpB",
+  "totalItems": 50,
+  "http://rdfs.org/ns/void#triples": 50
+}

@@ -1,0 +1,11 @@
+$ node packages/actor-init-sparql/bin/query.js
+hypermedia@https://hetarchief.be/nl/media/brief-van-den-soldaat-aan-zijne-verdrukte-medeburgers/r1ROcQtfXfhOZbUbUpivGRpY
+hypermedia@https://query.wikidata.org/bigdata/ldf
+"SELECT * WHERE { 
+	GRAPH ?document {
+	 ?newspaper a <http://schema.org/Newspaper> . 
+	 ?newspaper <http://schema.org/datePublished> ?datePublished . 
+	 ?newspaper <http://purl.org/dc/terms/title> ?title . 
+	 ?newspaper <http://schema.org/publisher> ?publisher . 
+ 	}
+}"
