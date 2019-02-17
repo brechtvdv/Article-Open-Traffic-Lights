@@ -1,18 +1,14 @@
 ## Abstract
 <!-- Context      -->
-Maintaining an Open Dataset comes at an extra recurring cost when it is published in a dedicated Web interface.
+Cities are increasingly investing in sensors. One of the initiatives is connecting traffic lights with the Internet.
 <!-- Need         -->
-As there is not often a direct financial return from publishing a dataset publicly, these extra costs need to be minimized.
+To retrieve insights and attain better policies from these data, it is crucial that the historical data are accessable and preservable in a low-cost fashion.
 <!-- Task         -->
-Therefore we want to explore reusing existing infrastructure by enriching existing websites with Linked Data.
+We propose (i) an ontology for describing the topology of an intersection and the signal timing of traffic lights, (ii) a specification to publish these historical and live data with Linked Data Fragments and (iii) a method to preserve the published data in the long-term.
+We showcase the applicability of our specification with the opentrafficlights.org project where an end-user can see the live count-down of a traffic light as well as a line chart showing historic 'time to green'.
 <!-- Object       -->
-In this demonstrator, we advised the data owner to annotate a digital heritage website with JSON-LD snippets, resulting in a dataset of more than three million triples that is now available and officially maintained. <!--TODO: how much data was in te end published? Can we have some stats about the total data dump? -->
-<!--Only an initial investment is required to have Linked Data snippets added to its corresponding webpages.-->
-The website itself is paged, and thus hydra partial collection view controls were added in the snippets.
-We then extended the modular query engine [Comunica](http://comunica.linkeddatafragments.org) to support following page controls and extracting data from HTML documents while querying.
+
 <!-- Findings     -->
-This way, a SPARQL or GraphQL query over multiple heterogeneous data sources can power automated data reuse.
-While the query performance on such an interface is visibly poor, it becomes easy to create composite data dumps.
+We found that publishing the data as time sorted Linked Data Fragments allow mechanisms for long-term preservation which are efficient for archiving institutions that use tape libraries.
 <!-- Conclusion and Perspectives -->
-As a result of implementing these building blocks in Comunica, any paged collection and enriched HTML page now becomes queryable by the query engine.
-This enables heterogenous data interfaces to share functionality and become technically interoperable.
+By making these data available on the Web, a collaboration from cities with archiving institutions becomes more feasible for long-term preservation of timeseries data.

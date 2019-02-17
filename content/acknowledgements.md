@@ -1,4 +1,4 @@
 ## Acknowledgements
 {:#acknowledgements}
 
-We would like to thank...
+We would like to thank VLAIO and IMEC

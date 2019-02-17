@@ -1,15 +1,20 @@
 ## Demonstrator
 {:#demonstrator}
 
-### opentrafficlights.org
+This application shows live traffic lights information of the intersection at the [Troppic Institute of Antwerp](https://www.openstreetmap.org/#map=19/51.21205/4.39717). The source code can be found as a Codepen at [https://codepen.io/brechtvdv/pen/BMQPNX/](https://codepen.io/brechtvdv/pen/BMQPNX/). The dataset is available under an Open license at [https://lodi.ilabt.imec.be/observer/rawdata/latest](https://lodi.ilabt.imec.be/observer/rawdata/latest).
 
+First, a user can select a departure lane and then a possible arrival lane to cross the intersection. This information comes from the _otl:Connection_ that are defined in the metadata.
+A live count-down is shown of the traffic light that is responsible for the chosen connection. The count-down is calculated with the minimum ending time of the state (current time - otl:minEndTime). The bigger then '>' sign indicates that the minimum and maximum end time are not equivalent thus it is uncertain when the signal state ends. 
+Note that this application uses HTTP polling every 100ms. This causes sometimes a less fluent count-down.
+
+Underneath the count-down, a historic 'time-to-green' is shown. The line represents how many seconds a user had to wait before green light is shown. The horizontal lines correspond with a waiting time of 0 seconds which corresponds with green light.
 
 <figure id="codepen">
 <center>
 <img src="img/codepen.PNG">
 </center>
 <figcaption markdown="block">
-TODO
+An end-user can select from which lane to depart and which lane to arrive. A live status 
 </figcaption>
 </figure>
 

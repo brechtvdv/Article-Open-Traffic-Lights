@@ -1,2 +1,8 @@
 ##  Conclusion
 {:#conclusion}
+
+Cities can use the Open Traffic Lights [ontology](#ontology) to publish their traffic lights data in a semantically interoperable way. Terms can be dereferenced over HTTP, so there is no need to have access to a high-level (mostly closed) standardisation profile (SPAT/MAP) to understand its meaning. The same applies for using a thesaurus for signal phases: expressing a signal phase is uniquely defined using a Web address instead of text. 
+
+A traffic lights API that follows our [specification](#specification) publishes every second one update. This lowers the barrier for Open Data re-users to create visualisations on top of it: they only have to retrieve the last observation as fast as possible. Still, it is possible to create a more intelligent client that calculates a count-down client-side. This could improve the user experience, however, extra polling would still be needed to check for emergency updates (e.g. ambulance needs to pass).
+
+In the Netherlands, the focus lies on maintaining a centralized, high-performant cloud-solution for data distribution (cfr. TLEX). While this is a necessity for self-driving cars, are the cities not responsible for publishing this data as Open Data? Who will preserve the historical values to retain better mobility policies? In future work, we will benchmark HTTP polling versus publish/subscribe to have a better understanding how real-timeness of sensor observations impacts the server infrastructure and what this implies for the user latency.
