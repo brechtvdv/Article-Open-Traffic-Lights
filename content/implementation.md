@@ -57,7 +57,7 @@ There are two main strategies to publish live data: a publish/subcribe system wh
 The data publisher _must_ offer HTTP polling and _should_ offer pub/sub:
 
 * **HTTP polling**: a Linked Data Fragment which is a HTTP document containing one or more of the most recent observations (e.g. _https://lodi.ilabt.imec.be/observer/rawdata/latest _). An _ETag_ header must be added to enable HTTP caching.
-* **publish/subscribe**: every update corresponds with one observation like [](example-observation). Preferably, HTTP-based [Server-Sent Events](https://developer.mozilla.org/en-US/docs/Web/API/Server-sent_events/Using_server-sent_events) _should_ be chosen.
+* **publish/subscribe**: every update corresponds with one observation like [](#example-observation). Preferably, HTTP-based [Server-Sent Events](https://developer.mozilla.org/en-US/docs/Web/API/Server-sent_events/Using_server-sent_events) _should_ be chosen.
 
 Historical data is similarly published like the HTTP polling fragment of live data, but contains a collection of past observations. [](#timeseries) shows that all observations are ordered on a time axis. To allow a HTTP client to automatically discover older observations, a _hydra:previous_ link _must_ be added. _Hydra:next_ links _should_ be added to allow time range retrieval in both directions. Also, the URL of the fragment is identified using the datetime of it's first observation, e.g. https://opentrafficlights.org/spat/K648?time=2018-10-31T14:58:23.205Z.
 
