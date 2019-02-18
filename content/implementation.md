@@ -53,24 +53,24 @@ Observation that signal group 6 has a certain state at 2018-10-31T14:58:23.205Z.
 </figcaption>
 </figure>
 
-There are two main strategies to publish live data: a publish/subcribe system where the data gets pushed to the client and HTTP polling where the client pulls data repeatedly. 
+There are two main strategies to publish live data: a publish/subcribe system where an observation gets pushed to the client and HTTP polling where the client pulls a Linked Data Fragment repeatedly. 
 The data publisher _must_ offer HTTP polling and _should_ offer pub/sub:
 
-* **HTTP polling**: a HTTP document containing one or more of the most recent observations is published (e.g. _https://lodi.ilabt.imec.be/observer/rawdata/latest _). An _ETag_ header must be added to enable HTTP caching.
+* **HTTP polling**: a Linked Data Fragment which is a HTTP document containing one or more of the most recent observations (e.g. _https://lodi.ilabt.imec.be/observer/rawdata/latest _). An _ETag_ header must be added to enable HTTP caching.
 * **publish/subscribe**: every update corresponds with one observation like [](example-observation). Preferably, HTTP-based [Server-Sent Events](https://developer.mozilla.org/en-US/docs/Web/API/Server-sent_events/Using_server-sent_events) _should_ be chosen.
 
-Historical data is similar to the HTTP polling document of live data, but a collection of past observations. [](#timeseries) shows that all observations are ordered on a time axis. To allow a HTTP client to automatically discover older observations, a _hydra:previous_ link _must_ be added. _Hydra:next_ links _should_ be added to allow time range retrieval in both directions. Also, the URL of the document is identified using the datetime of it's first observation, e.g. https://opentrafficlights.org/spat/K648?time=2018-10-31T14:58:23.205Z.
+Historical data is similarly published like the HTTP polling fragment of live data, but contains a collection of past observations. [](#timeseries) shows that all observations are ordered on a time axis. To allow a HTTP client to automatically discover older observations, a _hydra:previous_ link _must_ be added. _Hydra:next_ links _should_ be added to allow time range retrieval in both directions. Also, the URL of the fragment is identified using the datetime of it's first observation, e.g. https://opentrafficlights.org/spat/K648?time=2018-10-31T14:58:23.205Z.
 
 <figure id="timeseries">
 <center>
 <img src="img/timeseries.svg">
 </center>
 <figcaption markdown="block">
-Timeseries are published as a paged collection of time sorted documents. 
+Timeseries are published as a paged collection of time sorted Linked Data Fragments. 
 </figcaption>
 </figure>
 
-Another feature that server _must_ expose is *[templated links](https://www.hydra-cg.com/spec/latest/core/#templated-links)* using the Hydra vocabulary: a client should be able to construct a URL to retrieve the document that contains observations around a certain *time*. [](#templated-link) gives an example of this control. The server _must_ redirect with a HTTP 302 status code to the closest document that has a timestamp before *time*. When there is no document before *time*, the last document gets returned.
+Another feature that server _must_ expose is *[templated links](https://www.hydra-cg.com/spec/latest/core/#templated-links)* using the Hydra vocabulary: a client should be able to construct a URL to retrieve the fragment that contains observations around a certain *time*. [](#templated-link) gives an example of this control. The server _must_ redirect with a HTTP 302 status code to the closest fragment that has a timestamp before *time*. When there is no fragment before *time*, the last fragment gets returned.
 
 <figure id="templated-link" class="listing">
 ````/code/templated-link.txt````
@@ -79,7 +79,7 @@ A client can search for observations with a datetime as input.
 </figcaption>
 </figure>
 
-Finally, following metadata _must_ be added to every document:
+Finally, following metadata _must_ be added to every fragment:
 
 * the **topology** of the intersection (MAP): if available, the identifiers of lanes of the local authorities should be re-used. Otherwise, a lane should be defined and use _http://purl.org/dc/terms/description_ and _http://www.opengis.net/#geosparql/wktLiteral_ to allow humans and machines to select the relevant lane.
 * an Open **license** such as [CC0](https://creativecommons.org/publicdomain/zero/1.0/)
@@ -91,10 +91,9 @@ In next section, a strategy will be proposed for long-term preservation of these
 ### Preservation strategy
 {:#preservation}
 
-One observation per second is published with our specification. Given that one observation for one intersection correponds with circa 7 kilobytes, this generates more than a half gigabyte per day. It is important that inactive data is removed to keep the Open Data API light-weight, however, these should still be available for retrieval.
-In this section we will discuss how storage solutions 'tape' and 'disk' could be used for preserving traffic lights data. 
+One observation per second is published with our specification. Given that one observation for one intersection correponds with circa 7 kilobytes, this generates more than a half gigabyte per day. It is important that inactive data is removed from the Open Data API to keep it light-weight, however, these should still be available for retrieval. 
 
-The goal of preservating traffic lights observations is to allow clients to retrieve statements about the past. Just like one document containing Linked Data can be syntactically interoperable in multiple Linked Data formats, the statements preservation of a Linked Data document can occur in another document. This way, archiving small documents with traffic lights data can be feasible on tape by extracting its statements into one bigger document. For disk archives, archiving can be done traditionally.
+Storage solutions tape and disk require a different approach for preserving traffic lights data. As discussed in the background, tape is cost-efficient for large files. To circumvent this, Linked Data Fragments can be merged into one bigger Linked Data Fragment. This means that not the exact bytes are preserved, but only the statements. Validating with [_graph isomorphism_](cite:cites carroll2002matching) is not possible as the merged graph contains more statements than the graphs that needs to be compared with, but the ideas of generating an equivalence mapping between blank nodes can be re-used for statements preservation. With bigger fragments archiving traffic lights data on tape becomes feasible. For disk archives, there is no need to create bigger files, thus archiving can be done traditionally.
 
 An access point should be exposed by the archive that redirects to the archived document with the most recent observations. [](#timeseries-archive) shows that the last document of the Open Data API points, through the access point, to the archived documents. The archive can continously update by downloading the documents the same way as an Open Data re-user.
 
