@@ -1,0 +1,14 @@
+{
+	"@id": "«currentPageURL»",
+	"@type": "hydra:PartialCollectionView",
+	"hydra:search": {
+		"@type": "hydra:IriTemplate",
+		"hydra:template": "<<baseUrl>>{?time}",
+		"hydra:variableRepresentation": "hydra:BasicRepresentation",
+		"hydra:mapping": {
+			"@type": "hydra:IriTemplateMapping",
+			"hydra:variable": "time",
+			"hydra:required": true
+		}
+	}
+}
