@@ -2,14 +2,14 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
   <meta charset="utf-8" />
-  <title>Publishing and preserving traffic lights timeseries as Open Data</title>
+  <title>Open traffic lights: a study on publishing and preserving traffic lights data</title>
   <link rel="stylesheet" media="screen" href="styles/screen.css" />
   <link rel="stylesheet" media="print"  href="styles/print.css" />
   
 </head>
 <body prefix="rdf: http://www.w3.org/1999/02/22-rdf-syntax-ns# rdfs: http://www.w3.org/2000/01/rdf-schema# owl: http://www.w3.org/2002/07/owl# xsd: http://www.w3.org/2001/XMLSchema# dcterms: http://purl.org/dc/terms/ dctypes: http://purl.org/dc/dcmitype/ foaf: http://xmlns.com/foaf/0.1/ v: http://www.w3.org/2006/vcard/ns# pimspace: http://www.w3.org/ns/pim/space# cc: https://creativecommons.org/ns# skos: http://www.w3.org/2004/02/skos/core# prov: http://www.w3.org/ns/prov# qb: http://purl.org/linked-data/cube# schema: http://schema.org/ void: http://rdfs.org/ns/void# rsa: http://www.w3.org/ns/auth/rsa# cert: http://www.w3.org/ns/auth/cert# cal: http://www.w3.org/2002/12/cal/ical# wgs: http://www.w3.org/2003/01/geo/wgs84_pos# org: http://www.w3.org/ns/org# biblio: http://purl.org/net/biblio# bibo: http://purl.org/ontology/bibo/ book: http://purl.org/NET/book/vocab# ov: http://open.vocab.org/terms/ sioc: http://rdfs.org/sioc/ns# doap: http://usefulinc.com/ns/doap# dbr: http://dbpedia.org/resource/ dbp: http://dbpedia.org/property/ sio: http://semanticscience.org/resource/ opmw: http://www.opmw.org/ontology/ deo: http://purl.org/spar/deo/ doco: http://purl.org/spar/doco/ cito: http://purl.org/spar/cito/ fabio: http://purl.org/spar/fabio/ oa: http://www.w3.org/ns/oa# as: https://www.w3.org/ns/activitystreams# ldp: http://www.w3.org/ns/ldp# solid: http://www.w3.org/ns/solid/terms# acl: http://www.w3.org/ns/auth/acl# dio: https://w3id.org/dio# as: https://www.w3.org/ns/activitystreams# oa: http://www.w3.org/ns/oa# ldp: http://www.w3.org/ns/ldp#" typeof="schema:CreativeWork sioc:Post prov:Entity">
   <header>
-  <h1 id="publishing-and-preserving-traffic-lights-timeseries-as-open-data">Publishing and preserving traffic lights timeseries as Open Data</h1>
+  <h1 id="open-traffic-lights-a-study-on-publishing-and-preserving-traffic-lights-data">Open traffic lights: a study on publishing and preserving traffic lights data</h1>
 
   <ul id="authors">
     <li><a href="https://brechtvdv.github.io/" typeof="http://xmlns.com/foaf/0.1/Person" resource="https://w3id.org/people/brechtvdv/#me">Brecht Van de Vyvere</a></li>
@@ -46,16 +46,16 @@
     <!-- Context      -->
     <p>Cities are increasingly investing in sensors. One of the initiatives is connecting traffic lights with the Internet.
 <!-- Need         -->
-To retrieve insights and attain better policies from these data, it is crucial that the historical data are accessable and preservable in a low-cost fashion.
+To retrieve insights and attain better policies from these data, it is crucial that the historical data are accessable and preservable.
 <!-- Task         -->
 We propose (i) an ontology for describing the topology of an intersection and the signal timing of traffic lights, (ii) a specification to publish these historical and live data with Linked Data Fragments and (iii) a method to preserve the published data in the long-term.
-We showcase the applicability of our specification with the opentrafficlights.org project where an end-user can see the live count-down of a traffic light as well as a line chart showing historic ‘time to green’.
+We showcase the applicability of our specification with the opentrafficlights.org project where an end-user can see the live count-down as well as a line chart showing the historic ‘time to green’ of a traffic light.
 <!-- Object       --></p>
 
     <!-- Findings     -->
-    <p>We found that publishing traffic lights data as time sorted Linked Data Fragments allow mechanisms for synchronising and re-using an archive to retrieve historical observations. By focusing on knowledge preservation instead of byte preservation, fragments can be merged into bigger files. This increases the feasability to use tape storage for long-term preservation of sensor data.
+    <p>We found that publishing traffic lights data as time sorted Linked Data Fragments allow mechanisms for synchronising and reusing an archive to retrieve historical observations. Long-term preservation with tape storage becomes feasible when archives shift from byte preservation to knowledge preservation by combining Linked Data Fragments.
 <!-- Conclusion and Perspectives -->
-By making these data available on the Web, cities can collaborate with archiving institutions for the long-term preservation of timeseries data.</p>
+<!--Cities can collaborate with archiving institutions for the long-term preservation of timeseries data.--></p>
 
   </section>
 
@@ -65,15 +65,16 @@ By making these data available on the Web, cities can collaborate with archiving
   <section id="introduction">
       <h2>Introduction</h2>
 
-      <p>Sensors are progressively getting installed in the public domain by cities. The placement of these sensors are motivated to attain better data-driven policies, thus becoming Smart Cities. Sharing mobility data is crucial due to the rising of new transport modi (steps, shared cars etc.) and the desire to achieve smart traffic planning.</p>
+      <p>Sensors are progressively getting installed in the public domain by cities. This is motivated to attain better data-driven policies, thus becoming a smarter city. Sharing mobility data is crucial due to the rising of new transport modi (steps, shared cars etc.) and the desire to achieve more sustainable traffic planning.</p>
 
-      <p>Traffic lights, the first one already dating from <a href="https://en.wikipedia.org/wiki/Traffic_light">1868</a>, are being converted into Internet connected devices, so called intelligent Traffic Control Systems. In the Netherlands, hundreds of these TCSs are already <a href="http://www.nm-magazine.nl/artikelen/talking-traffic-applicaties-voor-de-ivri/">converted</a> through the public-private coorporation <a href="https://www.talking-traffic.com/nl/">Talking Traffic</a>. A centralized approach using asynchronous messaging is implemented with the Traffic Live Exchange (<a href="https://www.talking-traffic.com/nl/nieuws/stem-op-tlex">TLEX</a>) system which distributes data between TCSs and the end-user in both directions. In the city of Antwerp (Belgium), one <a href="https://www.imeccityofthings.be/nl/smart-zone">area</a> is provided with different kinds of sensors, such as the traffic lights from one intersection, to conduct experiments.</p>
+      <p>Traffic lights, the first one already dating from <a href="https://en.wikipedia.org/wiki/Traffic_light">1868</a>, are being converted into Internet connected devices, so called intelligent Traffic Control Systems (TCS). In the Netherlands, hundreds of these TCSs are already <a href="http://www.nm-magazine.nl/artikelen/talking-traffic-applicaties-voor-de-ivri/">converted</a> through the public-private coorporation <a href="https://www.talking-traffic.com/nl/">Talking Traffic</a>. A centralized approach using asynchronous messaging is implemented with the Traffic Live Exchange (<a href="https://www.talking-traffic.com/nl/nieuws/stem-op-tlex">TLEX</a>) system which distributes data between TCSs and the end-user in both directions. In the city of Antwerp (Belgium), one geographical <a href="https://www.imeccityofthings.be/nl/smart-zone">zone</a> is accommodated with different kinds of sensors to conduct experiments, such as the publication of it’s traffic lights data that is described in this paper.</p>
 
-      <p>Traffic lights <a href="https://www.etsi.org/deliver/etsi_ts/103300_103399/103301/01.02.01_60/ts_103301v010201p.pdf">datastandards</a> are already created by the European Telecommunications Standards Institue (ETSI), but identifiers (e.g. topology of the intersection) are scoped to the intersection, region or country. With Linked Data (<a href="">section 2</a>), traffic light streams become interoperable worldwide and allows decentralized data publishing, e.g.: TCS maintainers can have an up-to-date intersection topology from the maintainers of the road network.</p>
+      <p>Traffic lights <a href="https://www.etsi.org/deliver/etsi_ts/103300_103399/103301/01.02.01_60/ts_103301v010201p.pdf">data standards</a> are already created by the European Telecommunications Standards Institue (ETSI), but identifiers are scoped to the intersection, region or country. With Linked Data (<a href="">section 2</a>), traffic light streams become interoperable worldwide and allows decentralized data publishing. This would allow routeplanners to discover traffic lights data from other datasets, e.g. the road network.</p>
 
       <!-- Describe archiving need -->
+      <p>Web archives are increasingly re-used by scholars in the social sciences and humanities for studying phenomena <span class="references">[<a href="#ref-1">1</a>]</span>. In <a href="#preservation">section 3</a>, we propose a method how these archives also can preserve sensor observations and allow linking from the Open Data publisher to the archive. This way, digital scholars and cities can study phenomena of the city’s digital pulse.</p>
 
-      <p>This paper describes the contributions of the Open Traffic Lights project in <a href="#implementation">section 2</a>. A end-user application is showcased in <a href="#demonstrator">section 3</a>. Finally, we discuss our conclusions in <a href="#conclusion">section 4</a>.</p>
+      <p>This paper describes some background in <a href="#background">section 2</a>. Next, the contributions of the Open Traffic Lights project are explained in <a href="#implementation">section 3</a>. A end-user application is showcased in <a href="#demonstrator">section 4</a>. Finally, we discuss our conclusions in <a href="#conclusion">section 5</a>.</p>
     </section>
 
   <section id="sota">
@@ -81,58 +82,58 @@ By making these data available on the Web, cities can collaborate with archiving
 
       <h3 id="rdf-isomorphism">RDF isomorphism</h3>
 
-      <p>The Resource Description Framework (RDF) is a graph-based model to describe statements. Every statement corresponds with a triple (subject-predicate-object): the <em>subject</em> is the resource that is related an <em>object</em> through a <em>predicate</em> that defines a relation. For example, ‘the traffic light lights green’: ‘the traffic light’ is the subject, ‘green’ is the object and ‘lights’ is the predicate. This RDF statement is actually a small graph. Two graphs are isomorph when a bijection is possible as described in the algorithm by (Carrol J.)[cite:cites carroll2002matching]. This algorithm generates a hash for every blank node to allow equivalence checking and attempts to create a bijection between two graphs. If a bijection is created, the graphs are isomorph.</p>
+      <p>The Resource Description Framework (<a href="https://en.wikipedia.org/wiki/Resource_Description_Framework">RDF</a>) is a graph-based model to describe statements. Every RDF statement corresponds with a triple (subject-predicate-object): the <em>subject</em> is a resource that something is said about. The subject is related to an <em>object</em> through a <em>predicate</em>. For example, ‘the traffic light is lighted green’: ‘the traffic light’ is the subject, ‘green’ is the object and ‘is lighted’ is the predicate that expresses the relation. A RDF statement is actually a small graph. Two graphs are isomorph when a bijection is possible as described in the algorithm by Carrol J. <span class="references">[<a href="#ref-2">2</a>]</span>. This algorithm generates a hash for every blank node to allow equivalence checking and attempts to create a bijection between the graphs. If a bijection is created, the graphs are isomorph.</p>
 
       <h3 id="linked-data-fragments">Linked Data Fragments</h3>
 
-      <p><span property="schema:citation http://purl.org/spar/cito/cites" resource="https://dx.doi.org/10.1016/j.websem.2016.03.003"><a href="http://linkeddatafragments.org/publications/jws2016.pdf">Linked Data Fragments</a></span> <span class="references">[<a href="#ref-1">1</a>]</span> is a framework that allows to describe the fragmentation of a Linked Data dataset. Fragments are defined with three parts:</p>
+      <p><span property="schema:citation http://purl.org/spar/cito/cites" resource="https://dx.doi.org/10.1016/j.websem.2016.03.003"><a href="http://linkeddatafragments.org/publications/jws2016.pdf">Linked Data Fragments</a></span> <span class="references">[<a href="#ref-3">3</a>]</span> is a framework that allows to describe the fragmentation of a Linked Data dataset. Fragments are defined with three parts:</p>
 
       <ul>
-        <li>a <strong>selector</strong> defines which parts of the dataset belong to a fragment. For example: only sensor observations who are generated between a certain time interval.</li>
-        <li><strong>metadata</strong> about the fragment. For example: the license that applies to the fragment.</li>
-        <li><strong>controls</strong> help clients to retrieve more relevant data. For example where a previous page of a paged collection can be found.</li>
+        <li>a <strong>selector</strong> defines which parts of the dataset belong to a fragment. For example: only sensor observations that are generated between a certain time interval.</li>
+        <li><strong>metadata</strong> about the fragment. For example: the license that is applied.</li>
+        <li><strong>controls</strong> help clients to retrieve more relevant data. For example: where a previous page of a paged collection can be found.</li>
       </ul>
 
       <h3 id="preservation">Preservation</h3>
 
-      <p>Digital content can be preserved on tape or disk storage. Tape is in general used by TV broadcasters or audiovisual archives, because of its <a href="https://searchdatabackup.techtarget.com/news/1507559/Choosing-a-data-archiving-strategy-Disk-archiving-vs-tape-archiving">low pricing</a> for big volumes (&gt;50 TB), especially for long term preservation. A tape drive is cost-effective when writing or reading large files. Small files causes more overhead, because the tape drive reader needs to reset its position for every file. This is solved by archives either by bundling small files together (e.g. zip, tar) or saving them on disk storage. The latter benefits over tape with faster search and retrievable times and the ability to preserve small files more efficiently.</p>
+      <p>Digital content can be preserved on tape or on disk storage. In general, tape is used by TV broadcasters or audiovisual archives, because of it’s <a href="https://searchdatabackup.techtarget.com/news/1507559/Choosing-a-data-archiving-strategy-Disk-archiving-vs-tape-archiving">low pricing</a> for big volumes (&gt;50 terabytes), especially on the long-term. A tape drive is cost-effective when writing or reading large files, because the position of the tape drive reader does not need to be moved frequently contrary to small files. This deficit is solved by either bundling small files together (e.g. zip, tar) or saving them on disk storage. The latter benefits over tape with faster search and retrievable times and the ability to preserve small files more efficiently.</p>
 
-      <p>To archive a document, this is traditionally done by generating a hash (e.g. <a href="https://en.wikipedia.org/wiki/MD5">MD5</a>) from the document, copying the document together with a metadata file (cfr. <a href="https://en.wikipedia.org/wiki/Sidecar_file">sidecar</a>) , containing the hash, to the archive and verification by re-generating the hash on the archive.</p>
+      <p>To archive a document, this is traditionally done by generating a hash (e.g. <a href="https://en.wikipedia.org/wiki/MD5">MD5</a>) from the document, copying the document together with a metadata file containing the hash (cfr. <a href="https://en.wikipedia.org/wiki/Sidecar_file">sidecar</a>) to the archive system and verify the content by regenerating the hash on the archive.</p>
     </section>
 
   <section id="implementation">
       <h2>Open Traffic Lights</h2>
 
-      <p>The <a href="https://opentrafficlights.org">Open Traffic Lights</a> project started from the need to publish the traffic lights data from the <a href="https://www.imeccityofthings.be/nl/smart-zone">Smart Zone</a> in <a href="https://www.openstreetmap.org/#map=19/51.21205/4.39717">Antwerp</a> as Open Data. By using the <a href="">Resource Description Framework</a> (RDF) as a common model for representing knowledge, sensor observations are syntactically interoperable and can be integrated into one Knowledge Graph. To enable this for traffic lights observations, an ontology is needed to describe the signal timing and how this timing influences the intersection.</p>
+      <p>The <a href="https://opentrafficlights.org">Open Traffic Lights</a> project started from the need to publish the traffic lights data from the <a href="https://www.imeccityofthings.be/nl/smart-zone">Smart Zone</a> in <a href="https://www.openstreetmap.org/#map=19/51.21205/4.39717">Antwerp</a> as Open Data. By using the <a href="">Resource Description Framework</a> (RDF) as a common model for representing knowledge, sensor observations are syntactically interoperable and can be integrated into one Knowledge Graph. To enable this for traffic lights observations, an ontology is needed to describe the signal phase and timing and how traffic can move over the intersection.</p>
 
-      <p>The ontology is based on two Flemish profiles: the MapData (MAP) and the Signal Phase and Timing (SPAT) profile. MAP focuses on describing the topology of an intersection, while SPAT describes the phase that a traffic light adheres to. Both profiles are conform European Telecommunications Standards Institute (ETSI) standards: <a href="https://www.etsi.org/deliver/etsi_ts/103300_103399/103301/01.01.01_60/ts_103301v010101p.pdf">ETSI 103 301</a>, <a href="https://www.etsi.org/deliver/etsi_ts/102800_102899/10289402/01.01.01_60/ts_10289402v010101p.pdf">ETSI TS102 894-2</a>, but are not available under an Open license.</p>
+      <p>The MAP and SPAT messages are available through a closed message broker (cfr. <a href="https://mosquitto.org/">MQTT</a>) with a frequency of 200 milliseconds which corresponds with the cycle time of the Traffic Control System of the intersection. In the <a href="#Specification">specification</a> section, we will describe how the amount of data messages can be optimized for Open Data publishing and how historical information is still retrievable, in contrast to the broker interface.</p>
 
-      <p>The MAP and SPAT messages from the Smart Zone get sent through a closed message broker (<a href="https://mosquitto.org/">MQTT</a>) with a frequency of 200ms, because the Traffic Control System of the intersection recalculates every 200ms. In the <a href="#Specification">specification</a> section, we will describe how the amount of data messages can be optimized for Open Data publishing and how historical information is still retrievable, in contrast to the broker interface.</p>
+      <p>The ontology is based on two Flemish profiles: the MapData (MAP) and the Signal Phase and Timing (SPAT) profile. While MAP focuses on describing the topology of an intersection, describes SPAT the timing of the phase that a traffic light adheres to. Both profiles are conform European Telecommunications Standards Institute (ETSI) standards: <a href="https://www.etsi.org/deliver/etsi_ts/103300_103399/103301/01.01.01_60/ts_103301v010101p.pdf">ETSI 103 301</a>, <a href="https://www.etsi.org/deliver/etsi_ts/102800_102899/10289402/01.01.01_60/ts_10289402v010101p.pdf">ETSI TS102 894-2</a>, but are not available under an Open license.</p>
 
       <h3 id="ontology">Ontology</h3>
 
-      <p>The Open Traffic Lights ontology is currently scoped to the data that is currently published by the Smart Zone. The ontology is publicly available under an Open license: <a href="https://w3id.org/opentrafficlights#">https:/​/​w3id.org/opentrafficlights#</a> with prefix otl. <a href="#otl-ontology">Fig. 1</a> shows an overview of all the supported classes and properties that are defined.</p>
+      <p>The Open Traffic Lights ontology is currently scoped to the data that is published by the Smart Zone. It is publicly available under an Open license: <a href="https://w3id.org/opentrafficlights#">https:/​/​w3id.org/opentrafficlights#</a> with prefix otl. <a href="#otl-ontology">Fig. 1</a> shows an overview of all the supported classes and properties that are defined.</p>
 
       <figure id="otl-ontology">
 <center>
 <img src="img/otl-ontology.svg" />
 </center>
 <figcaption>
-          <p><span class="label">Fig. 1:</span> Classes and properties for describing the connection between lanes and a signalgroup that has a certain signal phase and timing.</p>
+          <p><span class="label">Fig. 1:</span> Classes and properties for describing MAP/SPAT related knowledge.</p>
         </figcaption>
 </figure>
 
-      <p>The MAP profile defines the lane topology of an intersection: according to the driving direction of the road user the lane that goes towards the conflict area of the intersection is called a <em>otl:departureLane</em>, mutatis mutandis for the <em>otl:ArrivalLane</em>. When a road user can manoevre from a departure lane towards one or more arrival lanes than this is called a <em>otl:Connection</em>.</p>
+      <p>According to the driving direction of the road user, the lane <em>otl:Lane</em> that goes towards the conflict area of the intersection is described with a <em>otl:departureLane</em>, mutatis mutandis for the <em>otl:arrivalLane</em>. If a road user can manoevre from a departure lane towards an arrival lane, than this is called a <em>otl:Connection</em>.</p>
 
-      <p>A connection is subject to a traffic light in the physical world which represents a certain <em>otl:SignalState</em>. The SPAT profile coins the term <em>otl:SignalGroup</em> for the collection of traffic lights sharing the same signal state. This state is characterized with following relations:</p>
+      <p>A connection is possible according to the <em>otl:SignalState</em> of the traffic light. Instead of referring to a traffic light, the SPAT profile coins the term <em>otl:SignalGroup</em> for the collection of traffic lights that continuously share a signal state. The latter is characterized with following relations:</p>
 
       <ul>
-        <li><strong>otl:signalPhase</strong>: points to a <a href="http://www.w3.org/2004/02/skos/core#Concept">SKOS concept</a> that represents the signal phase. This concept can be represented with a color (green, orange pinking etc.).</li>
+        <li><strong>otl:signalPhase</strong>: points to a <a href="http://www.w3.org/2004/02/skos/core#Concept">SKOS concept</a> that represents the signal phase. This concept represents a color (green, orange pinking etc.).</li>
         <li><strong>otl:minEndTime</strong>: the earliest time that the signal phase will change.</li>
         <li><strong>otl:maxEndTime</strong>: the maximum time that the signal group will remain in this signal phase.</li>
       </ul>
 
-      <p>In the SPAT profile, the signal phase is described using a text field, e.g. ‘protected-Movement-Allowed’ which means that a road user can safely cross the intersection (green light). To allow semantic interoperability with foreign countries, we made a taxonomy of possible signal phases which can be dereferenced by HTTP clients. The taxonomy is publicly available at <a href="https://w3id.org/opentrafficlights/thesauri/signalphase">https:/​/​w3id.org/opentrafficlights/thesauri/signalphase</a> under an Open license.</p>
+      <p>In the SPAT profile, the signal phase is described using a text field, e.g. ‘protected-Movement-Allowed’, which means that a road user can safely cross the intersection (‘green light’). To allow semantic interoperability with foreign countries, we made a taxonomy of possible signal phases which can be dereferenced by HTTP clients. The taxonomy is publicly available at <a href="https://w3id.org/opentrafficlights/thesauri/signalphase">https:/​/​w3id.org/opentrafficlights/thesauri/signalphase</a> under an Open license.</p>
 
       <p>In next section, we will describe a Web Application Programming Interface (<a href="https://en.wikipedia.org/wiki/Application_programming_interface">API</a>) specification to publish traffic light observations for Open Data re-use.</p>
 
@@ -146,17 +147,17 @@ By making these data available on the Web, cities can collaborate with archiving
         <li>how historical observations should be published</li>
       </ul>
 
-      <p>Every observation <em>must</em> be defined using instantaneous graphs (iGraphs) and stream graphs (sGraphs) <span class="references">[<a href="#ref-2">2</a>]</span>. The iGraph contains the observated content, in this case the signal phase and timing of signal group(s). The sGraph describes metadata about the observation: when the observation is generated. <a href="#example-observation">Listing 1</a> shows an example observed at 2018-10-31T14:58:23.205Z for signal group <em>https:/​/​opentrafficlights.org/id/signalgroup/K648/6</em>. 
-The original SPAT messages are sent every cycle time of the Traffic Control Sytem. For the intersection of Antwerp this is every 200 ms resulting in 5 observations per second. A server <em>must</em> calculate the final outcome that an end-user will see: the minimum and maximum time in seconds that a signal group will stay in its phase. This results in the generation of one observation per second.</p>
+      <p>Every observation <em>must</em> be defined using instantaneous graphs (iGraphs) and stream graphs (sGraphs) <span class="references">[<a href="#ref-4">4</a>]</span>. The iGraph contains the observated content, in this case the signal phase and timing of signal group(s). The sGraph describes metadata about the observation: when the observation is generated. <a href="#example-observation">Listing 1</a> shows as example the signal phase and timing observed at 2018-10-31T14:58:23.205Z for signal group <em>https:/​/​opentrafficlights.org/id/signalgroup/K648/6</em>.</p>
 
       <figure id="example-observation" class="listing">
-<pre><code>&lt;https://opentrafficlights.org/id/signalgroup/K648/6&gt; a otl:Signalgroup.
+<pre><code>&lt;https://opentrafficlights.org/id/signalgroup/K648/6&gt; a otl:SignalGroup.
+</code><code>
 </code><code>&lt;https://opentrafficlights.org/spat/K648?time=2018-10-31T14:58:23.205Z&gt; {
+</code><code>    &lt;https://opentrafficlights.org/id/signalgroup/K648/6&gt; otl:signalState _:b0.
 </code><code>    _:b0 a otl:SignalState;
 </code><code>    otl:signalPhase &lt;https://w3id.org/opentrafficlights/thesauri/signalphase/0&gt;;
 </code><code>    otl:minEndTime &quot;2018-10-31T14:58:37.605Z&quot;^^xsd:date;
 </code><code>    otl:maxEndTime &quot;2018-10-31T14:59:40.605Z&quot;^^xsd:date.
-</code><code>    &lt;https://opentrafficlights.org/id/signalgroup/K648/6&gt; otl:signalState _:b0.
 </code><code>}
 </code><code>&lt;https://opentrafficlights.org/spat/K648?time=2018-10-31T14:58:23.205Z&gt; prov:generatedAtTime &quot;2019-02-14T17:43:54.297Z&quot;^^xsd:date.</code></pre>
 <figcaption>
@@ -164,15 +165,17 @@ The original SPAT messages are sent every cycle time of the Traffic Control Syte
         </figcaption>
 </figure>
 
-      <p>There are two main strategies to publish live data: a publish/subcribe system where an observation gets pushed to the client and HTTP polling where the client pulls a Linked Data Fragment repeatedly. 
+      <p>SPAT messages are sent every cycle time of a Traffic Control System. For the TCS in Antwerp, which has a cycle time every 200 ms, this corresponds with 5 observations per second. To lower the amount of messages, a server <em>must</em> calculate the final outcome that an end-user will see and only publish if this changes. This means that a new observation is published whenever the minimum and maximum count-down (now - otl:minEndTime/otl:maxEndTime) in seconds or the otl:signalPhase changes. This results in the generation of one observation per second.</p>
+
+      <p>There are two main strategies to publish live data: a publish/subcribe system where an observation is pushed to the client and HTTP polling where the client pulls a Linked Data Fragment repeatedly. 
 The data publisher <em>must</em> offer HTTP polling and <em>should</em> offer pub/sub:</p>
 
       <ul>
-        <li><strong>HTTP polling</strong>: a Linked Data Fragment which is a HTTP document containing one or more of the most recent observations (e.g. <em>https:/​/​lodi.ilabt.imec.be/observer/rawdata/latest _). An _ETag</em> header must be added to enable HTTP caching.</li>
+        <li><strong>HTTP polling</strong>: a Linked Data Fragment which is a HTTP document containing one or more of the most recent observations (e.g. <em>https:/​/​lodi.ilabt.imec.be/observer/rawdata/latest</em>). The <em>ETag</em> header must be added to enable HTTP caching.</li>
         <li><strong>publish/subscribe</strong>: every update corresponds with one observation like <a href="#example-observation">Listing 1</a>. Preferably, HTTP-based <a href="https://developer.mozilla.org/en-US/docs/Web/API/Server-sent_events/Using_server-sent_events">Server-Sent Events</a> <em>should</em> be chosen.</li>
       </ul>
 
-      <p>Historical data is similarly published like the HTTP polling fragment of live data, but contains a collection of past observations. <a href="#timeseries">Fig. 2</a> shows that all observations are ordered on a time axis. To allow a HTTP client to automatically discover older observations, a <em>hydra:previous</em> link <em>must</em> be added. <em>Hydra:next</em> links <em>should</em> be added to allow time range retrieval in both directions. Also, the URL of the fragment is identified using the datetime of it’s first observation, e.g. https://opentrafficlights.org/spat/K648?time=2018-10-31T14:58:23.205Z.</p>
+      <p>Historical data are published as Linked Data Fragments similar to the HTTP polling approach. <a href="#timeseries">Fig. 2</a> shows that all observations are ordered on a time axis: the Linked Data Fragments <strong>select</strong> data based on time ranges. To allow a HTTP client to automatically discover older observations, a <em>hydra:previous</em> <strong>hypermedia</strong> link <em>must</em> be added using the <a href="https://www.hydra-cg.com/spec/latest/core/">Hydra</a> vocabulary. <em>Hydra:next</em> links <em>should</em> be added to allow time range retrieval in both directions. Also, the URL of the fragment is identified using the datetime of it’s first observation (e.g. https://opentrafficlights.org/spat/K648?time=2018-10-31T14:58:23.205Z).</p>
 
       <figure id="timeseries">
 <center>
@@ -183,7 +186,7 @@ The data publisher <em>must</em> offer HTTP polling and <em>should</em> offer pu
         </figcaption>
 </figure>
 
-      <p>Another feature that server <em>must</em> expose is <em><a href="https://www.hydra-cg.com/spec/latest/core/#templated-links">templated links</a></em> using the Hydra vocabulary: a client should be able to construct a URL to retrieve the fragment that contains observations around a certain <em>time</em>. <a href="#templated-link">Listing 2</a> gives an example of this control. The server <em>must</em> redirect with a HTTP 302 status code to the closest fragment that has a timestamp before <em>time</em>. When there is no fragment before <em>time</em>, the last fragment gets returned.</p>
+      <p>Another feature that the interface <em>must</em> expose is <em><a href="https://www.hydra-cg.com/spec/latest/core/#templated-links">templated links</a></em>: a client should be able to construct a URL to retrieve the fragment that contains observations around a certain <em>time</em> parameter. <a href="#templated-link">Listing 2</a> gives an example on how to express this <strong>hypermedia</strong> control. The server <em>must</em> redirect with a HTTP 302 status code to the fragment whose time range encapsulates <em>time</em>. When missing, the last fragment is returned.</p>
 
       <figure id="templated-link" class="listing">
 <pre><code>{
@@ -201,35 +204,40 @@ The data publisher <em>must</em> offer HTTP polling and <em>should</em> offer pu
 </code><code>	}
 </code><code>}</code></pre>
 <figcaption>
-          <p><span class="label">Listing 2:</span> A client can search for observations with a datetime as input.</p>
+          <p><span class="label">Listing 2:</span> A client can search for observations with a datetime as input parameter.</p>
         </figcaption>
 </figure>
 
-      <p>Finally, following metadata <em>must</em> be added to every fragment:</p>
+      <p>Finally, following <strong>metadata</strong> <em>must</em> be added to every fragment:</p>
 
       <ul>
-        <li>the <strong>topology</strong> of the intersection (MAP): if available, the identifiers of lanes of the local authorities should be re-used. Otherwise, a lane should be defined and use <em>http:/​/​purl.org/dc/terms/description</em> and <em>http:/​/​www.opengis.net/#geosparql/wktLiteral</em> to allow humans and machines to select the relevant lane.</li>
-        <li>an Open <strong>license</strong> such as <a href="https://creativecommons.org/publicdomain/zero/1.0/">CC0</a></li>
+        <li>the <strong>topology</strong> of the intersection (MAP): when available, the identifiers of the lanes of the local authorities should be reused. Otherwise, a lane should be defined using <em>otl:Lane</em> and use <em>http:/​/​purl.org/dc/terms/description</em> and <em>http:/​/​www.opengis.net/#geosparql/wktLiteral</em> to allow user agents select a lane.</li>
+        <li>an Open <strong>license</strong> (cfr. <a href="https://creativecommons.org/publicdomain/zero/1.0/">CC0</a>)</li>
       </ul>
 
-      <!-- Linked Data Fragments? -->
+      <p>In next section, a method will be proposed for long-term preservation of these fragments.</p>
 
-      <p>In next section, a strategy will be proposed for long-term preservation of these data.</p>
+      <h3 id="preservation">Preservation method</h3>
 
-      <h3 id="preservation">Preservation strategy</h3>
+      <p>With our specification, one observation with the average size of 7 kilobytes is published every second which generates more than a half gigabytes per day. It is important that inactive data is removed from the Open Data server to keep it light-weight, however, these should still be available for retrieval.</p>
 
-      <p>One observation per second is published with our specification. Given that one observation for one intersection correponds with circa 7 kilobytes, this generates more than a half gigabyte per day. It is important that inactive data is removed from the Open Data API to keep it light-weight, however, these should still be available for retrieval.</p>
+      <p>Storage solution tape require a different approach for preserving traffic lights data. As discussed in the background, tape is cost-efficient for large files. To circumvent this, Linked Data Fragments can be merged into one bigger Linked Data Fragment. This means that not the exact bytes are preserved, but only the statements. Validating with <em>graph isomorphism</em> <span class="references">[<a href="#ref-2">2</a>]</span> is not possible as the merged graph contains more statements than the original graphs that needs to be compared with, but the ideas of generating an equivalence mapping between blank nodes can be re-used for statements preservation. With these merged fragments archiving traffic lights data on tape becomes feasible. For disk archives, there is no need to create bigger files, thus archiving can be done traditionally as explained in <a href="#background">section 2</a>.</p>
 
-      <p>Storage solutions tape and disk require a different approach for preserving traffic lights data. As discussed in the background, tape is cost-efficient for large files. To circumvent this, Linked Data Fragments can be merged into one bigger Linked Data Fragment. This means that not the exact bytes are preserved, but only the statements. Validating with <em>graph isomorphism</em> <span class="references">[<a href="#ref-3">3</a>]</span> is not possible as the merged graph contains more statements than the graphs that needs to be compared with, but the ideas of generating an equivalence mapping between blank nodes can be re-used for statements preservation. With bigger fragments archiving traffic lights data on tape becomes feasible. For disk archives, there is no need to create bigger files, thus archiving can be done traditionally.</p>
+      <p>There are four aspects on synchronizing archives with our specification for traffc lights data (<a href="#timeseries-archive">Fig. 3</a>):</p>
 
-      <p>An access point should be exposed by the archive that redirects to the archived document with the most recent observations. <a href="#timeseries-archive">Fig. 3</a> shows that the last document of the Open Data API points, through the access point, to the archived documents. The archive can continously update by downloading the documents the same way as an Open Data re-user.</p>
+      <ul>
+        <li>1) archives need to harvest and optionally merge the Linked Data Fragments by following the provided hypermedia links in the Open Data interface</li>
+        <li>2) a hypermedia link is added to it’s previous harvested fragment</li>
+        <li>3) an access URL is exposed by the archive that redirects to the latest harvested fragment</li>
+        <li>4) the last published fragment of the Open Data interface links to this access URL so the Linked Open Data interface constitutes with the archive</li>
+      </ul>
 
       <figure id="timeseries-archive">
 <center>
 <img src="img/timeseries-archive.svg" />
 </center>
 <figcaption>
-          <p><span class="label">Fig. 3:</span> An archive can harvest the historical observations, optionally merge the Linked Data statements of multiple documents into one document, and link them together through previous links.</p>
+          <p><span class="label">Fig. 3:</span> An archive can harvest the historical observations, optionally merge the Linked Data statements of multiple documents into one document, and link everything together through previous links.</p>
         </figcaption>
 </figure>
 
@@ -238,20 +246,20 @@ The data publisher <em>must</em> offer HTTP polling and <em>should</em> offer pu
   <section id="demonstrator">
       <h2>Demonstrator</h2>
 
-      <p>This application shows live traffic lights information of the intersection at the <a href="https://www.openstreetmap.org/#map=19/51.21205/4.39717">Troppic Institute of Antwerp</a>. The source code can be found as a Codepen at <a href="https://codepen.io/brechtvdv/pen/BMQPNX/">https:/​/​codepen.io/brechtvdv/pen/BMQPNX/</a>. The dataset is available under an Open license at <a href="https://lodi.ilabt.imec.be/observer/rawdata/latest">https:/​/​lodi.ilabt.imec.be/observer/rawdata/latest</a>.</p>
+      <p>This application shows live traffic lights data of the intersection in the <a href="https://www.openstreetmap.org/#map=19/51.21205/4.39717">Antwerp</a>. The source code can be found as a Codepen at <a href="https://codepen.io/brechtvdv/pen/BMQPNX/">https:/​/​codepen.io/brechtvdv/pen/BMQPNX/</a>. The dataset is available under an Open license at <a href="https://lodi.ilabt.imec.be/observer/rawdata/latest">https:/​/​lodi.ilabt.imec.be/observer/rawdata/latest</a>.</p>
 
-      <p>First, a user can select a departure lane and then a possible arrival lane to cross the intersection. This information comes from the <em>otl:Connection</em> that are defined in the metadata.
-A live count-down is shown of the traffic light that is responsible for the chosen connection. The count-down is calculated with the minimum ending time of the state (current time - otl:minEndTime). The bigger then ‘&gt;’ sign indicates that the minimum and maximum end time are not equivalent thus it is uncertain when the signal state ends. 
+      <p>First, a user can select a departure lane and then a possible arrival lane to cross the intersection. This information comes from the <em>otl:Connection</em> that are defined as metadata.
+A live count-down is shown of the traffic light that is responsible for the chosen connection. The count-down is calculated with the minimum ending time of the state (current time - otl:minEndTime). The bigger then ‘&gt;’ sign indicates that the minimum and maximum end time are not equivalent, thus it is uncertain when the signal state ends. 
 Note that this application uses HTTP polling every 100ms. This causes sometimes a less fluent count-down.</p>
 
-      <p>Underneath the count-down, a historic ‘time-to-green’ is shown. The line represents how many seconds a user had to wait before green light is shown. The horizontal lines correspond with a waiting time of 0 seconds which corresponds with green light.</p>
+      <p>Underneath the count-down, a historic ‘time-to-green’ is shown. The line chart represents how many seconds a user had to wait before having green light. The horizontal lines correspond with a waiting time of 0 seconds, so this corresponds with green light.</p>
 
       <figure id="codepen">
 <center>
 <img src="img/codepen.PNG" />
 </center>
 <figcaption>
-          <p><span class="label">Fig. 4:</span> An end-user can select from which lane to depart and which lane to arrive. A live status</p>
+          <p><span class="label">Fig. 4:</span> Visualisation of the live count-down and the amount of seconds to wait before having a green light. Notice that the horizontal lines correspond with green times.</p>
         </figcaption>
 </figure>
 
@@ -267,13 +275,13 @@ Note that this application uses HTTP polling every 100ms. This causes sometimes 
   <section id="conclusion">
       <h2>Conclusion</h2>
 
-      <p>Cities can use the Open Traffic Lights <a href="#ontology">ontology</a> to publish their traffic lights data in a semantically interoperable way. Terms can be dereferenced over HTTP, so there is no need to have access to a high-level (mostly closed) standardisation profile (SPAT/MAP) to understand its meaning. The same applies for using a thesaurus for signal phases: expressing a signal phase is uniquely defined using a Web address instead of text.</p>
+      <p>Cities can use the Open Traffic Lights <a href="#ontology">ontology</a> to publish their traffic lights data in a semantically interoperable way. As these terms are dereferenceable over HTTP, there is no need to have access to a high-level (mostly closed) standardisation profile (SPAT/MAP) to understand it’s meaning. The same applies for using a thesaurus for signal phases: expressing a signal phase is uniquely defined using a Web address instead of text.</p>
 
-      <p>A traffic lights API that follows our <a href="#specification">specification</a> publishes every second one update. This lowers the barrier for Open Data re-users to create visualisations on top of it: they only have to retrieve the last observation as fast as possible. Still, it is possible to create a more intelligent client that calculates a count-down client-side. This could improve the user experience, however, extra polling would still be needed to check for emergency updates (e.g. ambulance needs to pass).</p>
+      <p>A traffic lights Open Data interface following the proposed <a href="#specification">specification</a> publishes every second one update. This lowers the barrier for Open Data re-users to create visualisations on top of it: they only have to retrieve the latest observation as fast as possible. Still, it is possible to create a more intelligent client that calculates a client-side count-down. This could improve the user experience, however, extra polling would still be needed to check for emergency updates (e.g. ambulance that is passing).</p>
 
-      <p>In the Netherlands, the focus lies on maintaining a centralized, high-performant cloud-solution for data distribution (cfr. TLEX). While this is a necessity for self-driving cars, are the cities not responsible for publishing this data as Open Data? Who will preserve the historical values to retain better mobility policies? In future work, we will benchmark HTTP polling versus publish/subscribe to have a better understanding how real-timeness of sensor observations impacts the server infrastructure and what this implies for the user latency.</p>
+      <p>In the Netherlands, the focus lies on maintaining a centralized, high-performant cloud-solution for data distribution (cfr. TLEX). While this is a necessity for self-driving cars, are the cities not responsible for publishing this data as Open Data? Who will preserve the historical values to retain better mobility policies? In future work, we will benchmark HTTP polling versus publish/subscribe to have a better understanding how the speed of sensor observations impacts the server infrastructure and what this implies for the user latency.</p>
 
-      <p>Archives are able to download the historic data of cities, but for tape storage it is advised to merge fragments together. Also, the archived fragments should be linked together in a similar way as the Open Data interface of the data publisher to activate the archive as an Open Data extension. In future work, an adaptation of the isomorphism algorithm (Carrol J.)[cite:cites carroll2002matching] would allow validation of knowledge preservation instead of byte preservation.</p>
+      <p>Archives are able to download the historic data of cities through it’s hypermedia links, but for tape storage it is advised to merge fragments together. Also, by linking the archived fragments in a similar way the archive is activated as an Open Data extension of the interface. In future work, an adaptation of the isomorphism algorithm of Carrol J. <span class="references">[<a href="#ref-2">2</a>]</span> is needed to open new doors for the preservation of combined Linked Data Fragments.</p>
     </section>
 
 </main>
@@ -283,11 +291,13 @@ Note that this application uses HTTP polling every 100ms. This causes sometimes 
 <h2>References</h2>
 <dl class="references">
   <dt id="ref-1">[1]</dt>
-  <dd resource="https://dx.doi.org/10.1016/j.websem.2016.03.003" typeof="schema:Article">Verborgh, R., Vander Sande, M., Hartig, O., Van Herwegen, J., De Vocht, L., De Meester, B., Haesendonck, G., Colpaert, P.: Triple Pattern Fragments: a Low-cost Knowledge Graph Interface for the Web. Journal of Web Semantics. 37–38, (2016).</dd>
+  <dd resource="#eveline2019webarchiving" typeof="schema:Article">Vlassenroot, E.: Web archives as a data resource for digital scholars. In: International Journal of Digital Humanities. Springer (2019).</dd>
   <dt id="ref-2">[2]</dt>
-  <dd resource="#barbieri2010proposal" typeof="schema:Article">Barbieri, D.F., Valle, E.D.: A proposal for publishing data streams as linked data. In: Linked Data on the Web Workshop (2010).</dd>
-  <dt id="ref-3">[3]</dt>
   <dd resource="#carroll2002matching" typeof="schema:Article">Carroll, J.J.: Matching RDF graphs. In: International Semantic Web Conference. pp. 5–15. Springer (2002).</dd>
+  <dt id="ref-3">[3]</dt>
+  <dd resource="https://dx.doi.org/10.1016/j.websem.2016.03.003" typeof="schema:Article">Verborgh, R., Vander Sande, M., Hartig, O., Van Herwegen, J., De Vocht, L., De Meester, B., Haesendonck, G., Colpaert, P.: Triple Pattern Fragments: a Low-cost Knowledge Graph Interface for the Web. Journal of Web Semantics. 37–38, (2016).</dd>
+  <dt id="ref-4">[4]</dt>
+  <dd resource="#barbieri2010proposal" typeof="schema:Article">Barbieri, D.F., Valle, E.D.: A proposal for publishing data streams as linked data. In: Linked Data on the Web Workshop (2010).</dd>
 </dl>
 </section>
 </footer>
