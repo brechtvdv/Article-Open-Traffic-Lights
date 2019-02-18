@@ -9,6 +9,6 @@ We showcase the applicability of our specification with the opentrafficlights.or
 <!-- Object       -->
 
 <!-- Findings     -->
-We found that publishing the data as time sorted Linked Data Fragments allow mechanisms for long-term preservation which are efficient for archiving institutions that use tape libraries.
+We found that publishing traffic lights data as time sorted Linked Data Fragments allow mechanisms for synchronising and re-using an archive to retrieve historical observations. By focusing on knowledge preservation instead of byte preservation, fragments can be merged into bigger files. This increases the feasability to use tape storage for long-term preservation of sensor data.
 <!-- Conclusion and Perspectives -->
-By making these data available on the Web, a collaboration from cities with archiving institutions becomes more feasible for long-term preservation of timeseries data.
+By making these data available on the Web, cities can collaborate with archiving institutions for the long-term preservation of timeseries data.
