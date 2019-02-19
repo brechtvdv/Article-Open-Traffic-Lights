@@ -21,27 +21,26 @@ Classes and properties for describing MAP/SPAT related knowledge.
 </figcaption>
 </figure>
 
-According to the driving direction of the road user, the lane _otl:Lane_ that goes towards the conflict area of the intersection is described with a _otl:departureLane_, mutatis mutandis for the _otl:arrivalLane_. If a road user can manoevre from a departure lane towards an arrival lane, than this is called a _otl:Connection_. 
+According to the driving direction of the road user, the lane _otl:Lane_ that goes towards the conflict area of the intersection is described with a _otl:departureLane_, mutatis mutandis for the _otl:arrivalLane_. If a road user can maneuver from a departure lane towards an arrival lane, than this is called a _otl:Connection_. 
 
-A connection is possible according to the _otl:SignalState_ of the traffic light. Instead of referring to a traffic light, the SPAT profile coins the term _otl:SignalGroup_ for the collection of traffic lights that continuously share a signal state. The latter is characterized with following relations:
+A connection is possible according to the _otl:SignalState_ of the traffic light. Instead of referring to a traffic light, the SPAT profile coins the term _otl:SignalGroup_ for the collection of traffic lights that continuously share a signal state. The latter is characterized by the following relations:
 
-* **otl:signalPhase**: points to a [SKOS concept](http://www.w3.org/2004/02/skos/core#Concept
-) that represents the signal phase. This concept represents a color (green, orange pinking etc.).
+* **otl:signalPhase**: points to a [SKOS concept](http://www.w3.org/2004/02/skos/core#Concept) that represents the signal phase. This concept represents a color (green, orange flashing, etc.).
 * **otl:minEndTime**: the earliest time that the signal phase will change. 
 * **otl:maxEndTime**: the maximum time that the signal group will remain in this signal phase.
 
-In the SPAT profile, the signal phase is described using a text field, e.g. 'protected-Movement-Allowed', which means that a road user can safely cross the intersection ('green light'). To allow semantic interoperability with foreign countries, we made a taxonomy of possible signal phases which can be dereferenced by HTTP clients. The taxonomy is publicly available at [https://w3id.org/opentrafficlights/thesauri/signalphase](https://w3id.org/opentrafficlights/thesauri/signalphase) under an Open license.
+In the SPAT profile, the signal phase is described using a text field, e.g. “protected-Movement-Allowed”, which means that a road user can safely cross the intersection (a green light). To allow semantic interoperability with foreign countries, we made a taxonomy of possible signal phases which can be dereferenced by HTTP clients. The taxonomy is publicly available at [https://w3id.org/opentrafficlights/thesauri/signalphase](https://w3id.org/opentrafficlights/thesauri/signalphase) under an Open license.
 
-In next section, we will describe a Web Application Programming Interface ([API](https://en.wikipedia.org/wiki/Application_programming_interface)) specification to publish traffic light observations for Open Data re-use. 
+In next section, we will describe a Web Application Programming Interface specification to publish traffic light observations for Open Data re-use. 
 
 ### Specification
 {:#specification}
 
 The specification contains three aspects:
 
-* how every traffic light observation should be described,
-* how the server interface should expose the live observations,
-* how historical observations should be published
+* how every traffic light observation must be described,
+* how the server interface exposes the live observations,
+* how historical observations must be published
 
 Every observation _must_ be defined using [instantaneous graphs (iGraphs) and stream graphs (sGraphs)](cite:cites barbieri2010proposal). The iGraph contains the observated content, in this case the signal phase and timing of signal group(s). The sGraph describes metadata about the observation: when the observation is generated. [](#example-observation) shows as example the signal phase and timing observed at 2018-10-31T14:58:23.205Z for signal group *https://opentrafficlights.org/id/signalgroup/K648/6*. 
 
@@ -52,7 +51,7 @@ Observation that signal group 6 has a certain state at 2018-10-31T14:58:23.205Z.
 </figcaption>
 </figure>
 
-SPAT messages are sent every cycle time of a Traffic Control System. For the TCS in Antwerp, which has a cycle time every 200 ms, this corresponds with 5 observations per second. To lower the amount of messages, a server _must_ calculate the final outcome that an end-user will see and only publish if this changes. This means that a new observation is published whenever the minimum and maximum count-down (now - otl:minEndTime/otl:maxEndTime) in seconds or the otl:signalPhase changes. This results in the generation of one observation per second.
+SPAT messages are sent every cycle time of a Traffic Control System. For the TCS in Antwerp, which has a cycle time every 200 ms, this corresponds with 5 observations per second. To lower the amount of messages, a server _must_ calculate the final outcome that an end-user will see and only publish if this changes. A new observation therefore is published whenever the minimum and maximum count-down (now - otl:minEndTime/otl:maxEndTime) in seconds or the otl:signalPhase changes. This results in the generation of one observation per second.
 
 There are two main strategies to publish live data: a publish/subcribe system where an observation is pushed to the client and HTTP polling where the client pulls a Linked Data Fragment repeatedly. 
 The data publisher _must_ offer HTTP polling and _should_ offer pub/sub:
@@ -83,23 +82,23 @@ A client can search for observations with a datetime as input parameter.
 Finally, following **metadata** _must_ be added to every fragment:
 
 * the **topology** of the intersection (MAP): when available, the identifiers of the lanes of the local authorities should be reused. Otherwise, a lane should be defined using _otl:Lane_ and use _http://purl.org/dc/terms/description_ and _http://www.opengis.net/#geosparql/wktLiteral_ to allow user agents select a lane.
-* an Open **license** (cfr. [CC0](https://creativecommons.org/publicdomain/zero/1.0/))
+* an Open **License** (cfr. [CC-0](https://creativecommons.org/publicdomain/zero/1.0/))
 
 In next section, a method will be proposed for long-term preservation of these fragments.
 
-### Preservation method
+### Preservation strategy
 {:#preservation}
 
 With our specification, one observation with the average size of 7 kilobytes is published every second which generates more than a half gigabytes per day. It is important that inactive data is removed from the Open Data server to keep it light-weight, however, these should still be available for retrieval. 
 
 Storage solution tape require a different approach for preserving traffic lights data. As discussed in the background, tape is cost-efficient for large files. To circumvent this, Linked Data Fragments can be merged into one bigger Linked Data Fragment. This means that not the exact bytes are preserved, but only the statements. Validating with [_graph isomorphism_](cite:cites carroll2002matching) is not possible as the merged graph contains more statements than the original graphs that needs to be compared with, but the ideas of generating an equivalence mapping between blank nodes can be re-used for statements preservation. With these merged fragments archiving traffic lights data on tape becomes feasible. For disk archives, there is no need to create bigger files, thus archiving can be done traditionally as explained in [section 2](#background).
 
-There are four aspects on synchronizing archives with our specification for traffc lights data ([](#timeseries-archive)):
+There are four aspects on synchronizing archives with our specification for traffic lights data ([](#timeseries-archive)):
 
-* 1) archives need to harvest and optionally merge the Linked Data Fragments by following the provided hypermedia links in the Open Data interface
-* 2) a hypermedia link is added to it's previous harvested fragment
-* 3) an access URL is exposed by the archive that redirects to the latest harvested fragment
-* 4) the last published fragment of the Open Data interface links to this access URL so the Linked Open Data interface constitutes with the archive
+ 1. archives need to harvest and optionally merge the Linked Data Fragments by following the provided hypermedia links in the Open Data interface
+ 2. a hypermedia link is added to it's previous harvested fragment
+ 3. an access URL is exposed by the archive that redirects to the latest harvested fragment
+ 4. the last published fragment of the Open Data interface links to this access URL so the Linked Open Data interface constitutes with the archive
 
 <figure id="timeseries-archive">
 <center>
