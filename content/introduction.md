@@ -14,11 +14,14 @@ A centralized approach using asynchronous messaging is implemented with the Traf
 The data so far has not been published publucly, but only been made available in partner applications for end-users.
 In the city of Antwerp (Belgium), one geographical [zone](https://www.imeccityofthings.be/nl/smart-zone) is accommodated with different kinds of sensors to conduct experiments, such as the publication of its traffic lights data that is described in this paper.
 
-Traffic lights [data standards](https://www.etsi.org/deliver/etsi_ts/103300_103399/103301/01.02.01_60/ts_103301v010201p.pdf) are already created by the European Telecommunications Standards Institue (ETSI), yet identifiers are scoped to the intersection, region or country. With Linked Data ([section 2]()), traffic light streams may become interoperable worldwide and may allow for a decentralized data publishing strategy.
+Traffic lights [data standards](https://www.etsi.org/deliver/etsi_ts/103300_103399/103301/01.02.01_60/ts_103301v010201p.pdf) are already created by the European Telecommunications Standards Institue (ETSI), yet identifiers are scoped to the intersection, region or country. With Linked Data ([Section 2]()), traffic light streams may become interoperable worldwide and may allow for a decentralized data publishing strategy.
 This way, any client, whether it is a route planners, a self-driving car or a data analyst, can follow links to and from other datasets while querying.
 
-<!-- Describe archiving need -->
-Web archives are increasingly re-used by scholars in the social sciences and humanities for studying phenomena [](cite:cites eveline2019webarchiving). In [section 3](#preservation), we propose a method how these archives also can preserve sensor observations and allow linking from the Open Data publisher to the archive. This way, digital scholars, citizens and cities can study phenomena of the city’s digital pulse.
+Preserved data from among others these TCSs can be used by digital scholars, citizens and cities to study the city’s digital pulse.
+Such Web archives are already used by scholars in, among others, the social sciences and humanities for studying phenomena [](cite:cites eveline2019webarchiving).
+In this paper, we propose a publishing strategy for data from TCSs, and zoom in on the aspect of preservation.
 
-This paper further describes the state of the art in [section 2](#background).
-Next, the contributions of the Open Traffic Lights project are explained in [section 3](#implementation). An end-user application is showcased in [section 4](#demonstrator). Finally, we discuss our conclusions in [section 5](#conclusion).
+The state of the art is described in [Section 2](#background).
+In [Section 3](#preservation), we propose a method how these archives also can preserve sensor observations and allow linking from the Open Data publisher to the archive.
+Next, an end-user application with code-snippet is demonstrated in [Section 4](#demonstrator).
+Finally, we discuss our conclusions in [Section 5](#conclusion).
