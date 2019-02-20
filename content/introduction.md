@@ -1,4 +1,4 @@
-<div class="printonly">This is a print-version of a paper first written for the Web. The Web-version is available at https://brechtvdv.github.io/Article-Open-Traffic-Lights</div>
+<div class="printonly">This is a print-version of a paper first written for the Web. The Web-version is available at <a href="https://brechtvdv.github.io/Article-Open-Traffic-Lights">https://brechtvdv.github.io/Article-Open-Traffic-Lights</a>.</div>
 
 ## Introduction
 {:#introduction}
@@ -13,10 +13,10 @@ Today, Traffic Control Systems (TCS) do not differ much from the model installed
 Not only self-driving cars may benefit, also cyclists seeking green lights on a rainy day, or a citizen willing to analyze the crossroad’s efficiency near their home.
 In the Netherlands, [hundreds of these TCSs are already converted](http://www.nm-magazine.nl/artikelen/talking-traffic-applicaties-voor-de-ivri/) through the public-private coorporation [Talking Traffic](https://www.talking-traffic.com/nl/).
 A centralized approach using asynchronous messaging is implemented with the Traffic Live Exchange ([TLEX](https://www.talking-traffic.com/nl/nieuws/stem-op-tlex)) system which distributes data between TCSs and the end-user in both directions.
-The data so far has not been published publucly, but only been made available in partner applications for end-users.
+The data so far has not been published publicly, but only been made available in partner applications for end-users.
 In the city of Antwerp (Belgium), one geographical [zone](https://www.imeccityofthings.be/nl/smart-zone) is accommodated with different kinds of sensors to conduct experiments, such as the publication of its traffic lights data that is described in this paper.
 
-Traffic lights [data standards](https://www.etsi.org/deliver/etsi_ts/103300_103399/103301/01.02.01_60/ts_103301v010201p.pdf) are already created by the European Telecommunications Standards Institue (ETSI), yet identifiers are scoped to the intersection, region or country. With Linked Data ([Section 2]()), traffic light streams may become interoperable worldwide and may allow for a decentralized data publishing strategy.
+Traffic lights [data standards](https://www.etsi.org/deliver/etsi_ts/103300_103399/103301/01.02.01_60/ts_103301v010201p.pdf) are already created by the European Telecommunications Standards Institute (ETSI), yet identifiers are scoped to the intersection, region or country. With Linked Data ([Section 2]()), traffic light streams may become interoperable worldwide and may allow for a decentralized data publishing strategy.
 This way, any client, whether it is a route planners, a self-driving car or a data analyst, can follow links to and from other datasets while querying.
 
 Preserved data from among others these TCSs can be used by digital scholars, citizens and cities to study the city’s digital pulse.
