@@ -44,16 +44,15 @@
 <section id="abstract">
     <h2>Abstract</h2>
     <!-- Context      -->
-    <p>Cities are increasingly investing in sensors. One of the initiatives is connecting traffic lights with the Internet.
+    <p>For better traffic flow and making better policy decisions, the city of Antwerp is connecting traffic lights to the Internet.
 <!-- Need         -->
-To retrieve insights and attain better policies from these data, it is crucial that the historical data are accessable and preservable.
+The live “time to green” only tells a part of the story: also the historical values need to be preserved and need to be made accessible to everyone.
 <!-- Task         -->
 We propose (i) an ontology for describing the topology of an intersection and the signal timing of traffic lights, (ii) a specification to publish these historical and live data with Linked Data Fragments and (iii) a method to preserve the published data in the long-term.
-We showcase the applicability of our specification with the opentrafficlights.org project where an end-user can see the live count-down as well as a line chart showing the historic ‘time to green’ of a traffic light.
-<!-- Object       --></p>
-
-    <!-- Findings     -->
-    <p>We found that publishing traffic lights data as time sorted Linked Data Fragments allow mechanisms for synchronising and reusing an archive to retrieve historical observations. Long-term preservation with tape storage becomes feasible when archives shift from byte preservation to knowledge preservation by combining Linked Data Fragments.
+We showcase the applicability of our specification with the opentrafficlights.org project where an end-user can see the live count-down as well as a line chart showing the historic “time to green” of a traffic light.
+<!-- Object       --><!-- Findings     -->
+We found that publishing traffic lights data as time sorted Linked Data Fragments allow synchronizing and reusing an archive to retrieve historical observations.
+Long-term preservation with tape storage becomes feasible when archives shift from byte preservation to knowledge preservation by combining Linked Data Fragments.
 <!-- Conclusion and Perspectives -->
 <!--Cities can collaborate with archiving institutions for the long-term preservation of timeseries data.--></p>
 
@@ -67,20 +66,41 @@ We showcase the applicability of our specification with the opentrafficlights.or
 
       <h2 id="introduction">Introduction</h2>
 
-      <p>Sensors are progressively getting installed in the public domain by cities. This is motivated to attain better data-driven policies, thus becoming a smarter city. Sharing mobility data is crucial due to the rising of new transport modi (steps, shared cars etc.) and the desire to achieve more sustainable traffic planning.</p>
+      <p>Smarter cities try to make more evidence-based decisions based on, for instance, sensors installed in the city.
+In the case of sensors, not only the live values are important, also historical values need to be preserved and available.
+This is government data and policy decisions world-wide – such as open by default, the freedom of information act or the public sector information directive – mandate that government data must be made freely available to everyone.
+When historic values of smart city datasets become available, everyone can join an evidence-based debate on the city’s future.</p>
 
-      <p>Traffic lights, the first one already dating from <a href="https://en.wikipedia.org/wiki/Traffic_light">1868</a>, are being converted into Internet connected devices, so called intelligent Traffic Control Systems (TCS). In the Netherlands, hundreds of these TCSs are already <a href="http://www.nm-magazine.nl/artikelen/talking-traffic-applicaties-voor-de-ivri/">converted</a> through the public-private coorporation <a href="https://www.talking-traffic.com/nl/">Talking Traffic</a>. A centralized approach using asynchronous messaging is implemented with the Traffic Live Exchange (<a href="https://www.talking-traffic.com/nl/nieuws/stem-op-tlex">TLEX</a>) system which distributes data between TCSs and the end-user in both directions. In the city of Antwerp (Belgium), one geographical <a href="https://www.imeccityofthings.be/nl/smart-zone">zone</a> is accommodated with different kinds of sensors to conduct experiments, such as the publication of it’s traffic lights data that is described in this paper.</p>
+      <p>The first traffic light was installed in London in <a href="https://en.wikipedia.org/wiki/Traffic_light">1868</a>.
+Today, Traffic Control Systems (TCS) do not differ much from the model installed 1.5 centuries ago, yet we can imagine the potential of making TCSs internet-connected and making traffic light statuses available as Open Data.
+Not only self-driving cars may benefit, also cyclists seeking green lights on a rainy day, or a citizen willing to analyze the crossroad’s efficiency near their home.
+In the Netherlands, <a href="http://www.nm-magazine.nl/artikelen/talking-traffic-applicaties-voor-de-ivri/">hundreds of these TCSs are already converted</a> through the public-private coorporation <a href="https://www.talking-traffic.com/nl/">Talking Traffic</a>.
+A centralized approach using asynchronous messaging is implemented with the Traffic Live Exchange (<a href="https://www.talking-traffic.com/nl/nieuws/stem-op-tlex">TLEX</a>) system which distributes data between TCSs and the end-user in both directions.
+The data so far has not been published publucly, but only been made available in partner applications for end-users.
+In the city of Antwerp (Belgium), one geographical <a href="https://www.imeccityofthings.be/nl/smart-zone">zone</a> is accommodated with different kinds of sensors to conduct experiments, such as the publication of its traffic lights data that is described in this paper.</p>
 
-      <p>Traffic lights <a href="https://www.etsi.org/deliver/etsi_ts/103300_103399/103301/01.02.01_60/ts_103301v010201p.pdf">data standards</a> are already created by the European Telecommunications Standards Institue (ETSI), but identifiers are scoped to the intersection, region or country. With Linked Data (<a href="">section 2</a>), traffic light streams become interoperable worldwide and allows decentralized data publishing. This would allow routeplanners to discover traffic lights data from other datasets, e.g. the road network.</p>
+      <p>Traffic lights <a href="https://www.etsi.org/deliver/etsi_ts/103300_103399/103301/01.02.01_60/ts_103301v010201p.pdf">data standards</a> are already created by the European Telecommunications Standards Institue (ETSI), yet identifiers are scoped to the intersection, region or country. With Linked Data (<a href="">Section 2</a>), traffic light streams may become interoperable worldwide and may allow for a decentralized data publishing strategy.
+This way, any client, whether it is a route planners, a self-driving car or a data analyst, can follow links to and from other datasets while querying.</p>
 
-      <!-- Describe archiving need -->
-      <p>Web archives are increasingly re-used by scholars in the social sciences and humanities for studying phenomena <span class="references">[<a href="#ref-1">1</a>]</span>. In <a href="#preservation">section 3</a>, we propose a method how these archives also can preserve sensor observations and allow linking from the Open Data publisher to the archive. This way, digital scholars and cities can study phenomena of the city’s digital pulse.</p>
+      <p>Preserved data from among others these TCSs can be used by digital scholars, citizens and cities to study the city’s digital pulse.
+Such Web archives are already used by scholars in, among others, the social sciences and humanities for studying phenomena <span class="references">[<a href="#ref-1">1</a>]</span>.
+In this paper, we propose a publishing strategy for data from TCSs, and zoom in on the aspect of preservation.</p>
 
-      <p>This paper describes some background in <a href="#background">section 2</a>. Next, the contributions of the Open Traffic Lights project are explained in <a href="#implementation">section 3</a>. A end-user application is showcased in <a href="#demonstrator">section 4</a>. Finally, we discuss our conclusions in <a href="#conclusion">section 5</a>.</p>
+      <p>The state of the art is described in <a href="#background">Section 2</a>.
+In <a href="#preservation">Section 3</a>, we propose a method how these archives also can preserve sensor observations and allow linking from the Open Data publisher to the archive.
+Next, an end-user application with code-snippet is demonstrated in <a href="#demonstrator">Section 4</a>.
+Finally, we discuss our conclusions in <a href="#conclusion">Section 5</a>.</p>
+
     </section>
 
   <section id="sota">
       <h2>Background</h2>
+
+      <h3 id="preservation">Preservation</h3>
+
+      <p>Digital content can be preserved on tape or on disk storage. In general, tape is used by TV broadcasters or audiovisual archives, because of its <a href="https://searchdatabackup.techtarget.com/news/1507559/Choosing-a-data-archiving-strategy-Disk-archiving-vs-tape-archiving">low pricing</a> for big volumes (&gt;50 terabytes), especially on the long-term. A tape drive is cost-effective when writing or reading large files, because the position of the tape drive reader does not need to be moved frequently contrary to small files. This deficit is solved by either bundling small files together (e.g. zip, tar) or saving them on disk storage. The latter benefits over tape with faster search and retrievable times and the ability to preserve small files more efficiently.</p>
+
+      <p>To archive a document, this is traditionally done by generating a hash (e.g. <a href="https://en.wikipedia.org/wiki/MD5">MD5</a>) from the document, copying the document together with a metadata file containing the hash (cfr. <a href="https://en.wikipedia.org/wiki/Sidecar_file">sidecar</a>) to the archive system and verify the content by regenerating the hash on the archive.</p>
 
       <h3 id="rdf-isomorphism">RDF isomorphism</h3>
 
@@ -96,11 +116,11 @@ We showcase the applicability of our specification with the opentrafficlights.or
         <li><strong>controls</strong> help clients to retrieve more relevant data. For example: where a previous page of a paged collection can be found.</li>
       </ul>
 
-      <h3 id="preservation">Preservation</h3>
+      <p><span property="schema:citation http://purl.org/spar/cito/cites" resource="https://dx.doi.org/10.1007/978-3-030-00668-6_15"><a href="https://comunica.github.io/Article-ISWC2018-Resource/">Comunica</a></span> <span class="references">[<a href="#ref-4">4</a>]</span> is a framework to query over the various Web interfaces in the Linked Data Fragments axis.
+It interprets the metadata and controls to evaluate a query.
+Finding a fragmentation strategy <span class="references">[<a href="#ref-5">5</a>]</span> for web archives and time series data than can be consumed by generic clients <span class="references">[<a href="#ref-6">6</a>]</span> is still a challenge.
+In this paper we try to suggest a solution in which generic clients can still query over the data.</p>
 
-      <p>Digital content can be preserved on tape or on disk storage. In general, tape is used by TV broadcasters or audiovisual archives, because of it’s <a href="https://searchdatabackup.techtarget.com/news/1507559/Choosing-a-data-archiving-strategy-Disk-archiving-vs-tape-archiving">low pricing</a> for big volumes (&gt;50 terabytes), especially on the long-term. A tape drive is cost-effective when writing or reading large files, because the position of the tape drive reader does not need to be moved frequently contrary to small files. This deficit is solved by either bundling small files together (e.g. zip, tar) or saving them on disk storage. The latter benefits over tape with faster search and retrievable times and the ability to preserve small files more efficiently.</p>
-
-      <p>To archive a document, this is traditionally done by generating a hash (e.g. <a href="https://en.wikipedia.org/wiki/MD5">MD5</a>) from the document, copying the document together with a metadata file containing the hash (cfr. <a href="https://en.wikipedia.org/wiki/Sidecar_file">sidecar</a>) to the archive system and verify the content by regenerating the hash on the archive.</p>
     </section>
 
   <section id="implementation">
@@ -125,31 +145,31 @@ We showcase the applicability of our specification with the opentrafficlights.or
         </figcaption>
 </figure>
 
-      <p>According to the driving direction of the road user, the lane <em>otl:Lane</em> that goes towards the conflict area of the intersection is described with a <em>otl:departureLane</em>, mutatis mutandis for the <em>otl:arrivalLane</em>. If a road user can manoevre from a departure lane towards an arrival lane, than this is called a <em>otl:Connection</em>.</p>
+      <p>According to the driving direction of the road user, the lane <em>otl:Lane</em> that goes towards the conflict area of the intersection is described with a <em>otl:departureLane</em>, mutatis mutandis for the <em>otl:arrivalLane</em>. If a road user can maneuver from a departure lane towards an arrival lane, than this is called a <em>otl:Connection</em>.</p>
 
-      <p>A connection is possible according to the <em>otl:SignalState</em> of the traffic light. Instead of referring to a traffic light, the SPAT profile coins the term <em>otl:SignalGroup</em> for the collection of traffic lights that continuously share a signal state. The latter is characterized with following relations:</p>
+      <p>A connection is possible according to the <em>otl:SignalState</em> of the traffic light. Instead of referring to a traffic light, the SPAT profile coins the term <em>otl:SignalGroup</em> for the collection of traffic lights that continuously share a signal state. The latter is characterized by the following relations:</p>
 
       <ul>
-        <li><strong>otl:signalPhase</strong>: points to a <a href="http://www.w3.org/2004/02/skos/core#Concept">SKOS concept</a> that represents the signal phase. This concept represents a color (green, orange pinking etc.).</li>
+        <li><strong>otl:signalPhase</strong>: points to a <a href="http://www.w3.org/2004/02/skos/core#Concept">SKOS concept</a> that represents the signal phase. This concept represents a color (green, orange flashing, etc.).</li>
         <li><strong>otl:minEndTime</strong>: the earliest time that the signal phase will change.</li>
         <li><strong>otl:maxEndTime</strong>: the maximum time that the signal group will remain in this signal phase.</li>
       </ul>
 
-      <p>In the SPAT profile, the signal phase is described using a text field, e.g. ‘protected-Movement-Allowed’, which means that a road user can safely cross the intersection (‘green light’). To allow semantic interoperability with foreign countries, we made a taxonomy of possible signal phases which can be dereferenced by HTTP clients. The taxonomy is publicly available at <a href="https://w3id.org/opentrafficlights/thesauri/signalphase">https:/​/​w3id.org/opentrafficlights/thesauri/signalphase</a> under an Open license.</p>
+      <p>In the SPAT profile, the signal phase is described using a text field, e.g. “protected-Movement-Allowed”, which means that a road user can safely cross the intersection (a green light). To allow semantic interoperability with foreign countries, we made a taxonomy of possible signal phases which can be dereferenced by HTTP clients. The taxonomy is publicly available at <a href="https://w3id.org/opentrafficlights/thesauri/signalphase">https:/​/​w3id.org/opentrafficlights/thesauri/signalphase</a> under an Open license.</p>
 
-      <p>In next section, we will describe a Web Application Programming Interface (<a href="https://en.wikipedia.org/wiki/Application_programming_interface">API</a>) specification to publish traffic light observations for Open Data re-use.</p>
+      <p>In next section, we will describe a Web Application Programming Interface specification to publish traffic light observations for Open Data re-use.</p>
 
       <h3 id="specification">Specification</h3>
 
       <p>The specification contains three aspects:</p>
 
       <ul>
-        <li>how every traffic light observation should be described,</li>
-        <li>how the server interface should expose the live observations,</li>
-        <li>how historical observations should be published</li>
+        <li>how every traffic light observation must be described,</li>
+        <li>how the server interface exposes the live observations,</li>
+        <li>how historical observations must be published</li>
       </ul>
 
-      <p>Every observation <em>must</em> be defined using instantaneous graphs (iGraphs) and stream graphs (sGraphs) <span class="references">[<a href="#ref-4">4</a>]</span>. The iGraph contains the observated content, in this case the signal phase and timing of signal group(s). The sGraph describes metadata about the observation: when the observation is generated. <a href="#example-observation">Listing 1</a> shows as example the signal phase and timing observed at 2018-10-31T14:58:23.205Z for signal group <em>https:/​/​opentrafficlights.org/id/signalgroup/K648/6</em>.</p>
+      <p>Every observation <em>must</em> be defined using instantaneous graphs (iGraphs) and stream graphs (sGraphs) <span class="references">[<a href="#ref-7">7</a>]</span>. The iGraph contains the observated content, in this case the signal phase and timing of signal group(s). The sGraph describes metadata about the observation: when the observation is generated. <a href="#example-observation">Listing 1</a> shows as example the signal phase and timing observed at 2018-10-31T14:58:23.205Z for signal group <em>https:/​/​opentrafficlights.org/id/signalgroup/K648/6</em>.</p>
 
       <figure id="example-observation" class="listing">
 <pre><code>&lt;https://opentrafficlights.org/id/signalgroup/K648/6&gt; a otl:SignalGroup.
@@ -158,16 +178,17 @@ We showcase the applicability of our specification with the opentrafficlights.or
 </code><code>    &lt;https://opentrafficlights.org/id/signalgroup/K648/6&gt; otl:signalState _:b0.
 </code><code>    _:b0 a otl:SignalState;
 </code><code>    otl:signalPhase &lt;https://w3id.org/opentrafficlights/thesauri/signalphase/0&gt;;
-</code><code>    otl:minEndTime &quot;2018-10-31T14:58:37.605Z&quot;^^xsd:date;
-</code><code>    otl:maxEndTime &quot;2018-10-31T14:59:40.605Z&quot;^^xsd:date.
+</code><code>    otl:minEndTime &quot;2018-10-31T14:58:37.605Z&quot;^^xsd:dateTime;
+</code><code>    otl:maxEndTime &quot;2018-10-31T14:59:40.605Z&quot;^^xsd:dateTime.
 </code><code>}
-</code><code>&lt;https://opentrafficlights.org/spat/K648?time=2018-10-31T14:58:23.205Z&gt; prov:generatedAtTime &quot;2019-02-14T17:43:54.297Z&quot;^^xsd:date.</code></pre>
+</code><code>&lt;https://opentrafficlights.org/spat/K648?time=2018-10-31T14:58:23.205Z&gt; prov:generatedAtTime &quot;2019-02-14T17:43:54.297Z&quot;^^xsd:dateTime.
+</code></pre>
 <figcaption>
           <p><span class="label">Listing 1:</span> Observation that signal group 6 has a certain state at 2018-10-31T14:58:23.205Z.</p>
         </figcaption>
 </figure>
 
-      <p>SPAT messages are sent every cycle time of a Traffic Control System. For the TCS in Antwerp, which has a cycle time every 200 ms, this corresponds with 5 observations per second. To lower the amount of messages, a server <em>must</em> calculate the final outcome that an end-user will see and only publish if this changes. This means that a new observation is published whenever the minimum and maximum count-down (now - otl:minEndTime/otl:maxEndTime) in seconds or the otl:signalPhase changes. This results in the generation of one observation per second.</p>
+      <p>SPAT messages are sent every cycle time of a Traffic Control System. For the TCS in Antwerp, which has a cycle time every 200 ms, this corresponds with 5 observations per second. To lower the amount of messages, a server <em>must</em> calculate the final outcome that an end-user will see and only publish if this changes. A new observation therefore is published whenever the minimum and maximum count-down (now - otl:minEndTime/otl:maxEndTime) in seconds or the otl:signalPhase changes. This results in the generation of one observation per second.</p>
 
       <p>There are two main strategies to publish live data: a publish/subcribe system where an observation is pushed to the client and HTTP polling where the client pulls a Linked Data Fragment repeatedly. 
 The data publisher <em>must</em> offer HTTP polling and <em>should</em> offer pub/sub:</p>
@@ -177,7 +198,7 @@ The data publisher <em>must</em> offer HTTP polling and <em>should</em> offer pu
         <li><strong>publish/subscribe</strong>: every update corresponds with one observation like <a href="#example-observation">Listing 1</a>. Preferably, HTTP-based <a href="https://developer.mozilla.org/en-US/docs/Web/API/Server-sent_events/Using_server-sent_events">Server-Sent Events</a> <em>should</em> be chosen.</li>
       </ul>
 
-      <p>Historical data are published as Linked Data Fragments similar to the HTTP polling approach. <a href="#timeseries">Fig. 2</a> shows that all observations are ordered on a time axis: the Linked Data Fragments <strong>select</strong> data based on time ranges. To allow a HTTP client to automatically discover older observations, a <em>hydra:previous</em> <strong>hypermedia</strong> link <em>must</em> be added using the <a href="https://www.hydra-cg.com/spec/latest/core/">Hydra</a> vocabulary. <em>Hydra:next</em> links <em>should</em> be added to allow time range retrieval in both directions. Also, the URL of the fragment is identified using the datetime of it’s first observation (e.g. https://opentrafficlights.org/spat/K648?time=2018-10-31T14:58:23.205Z).</p>
+      <p>Historical data are published as Linked Data Fragments similar to the HTTP polling approach. <a href="#timeseries">Fig. 2</a> shows that all observations are ordered on a time axis: the Linked Data Fragments <strong>select</strong> data based on time ranges. To allow a HTTP client to automatically discover older observations, a <em>hydra:previous</em> <strong>hypermedia</strong> link <em>must</em> be added using the <a href="https://www.hydra-cg.com/spec/latest/core/">Hydra</a> vocabulary. <em>Hydra:next</em> links <em>should</em> be added to allow time range retrieval in both directions. Also, the URL of the fragment is identified using the datetime of its first observation (e.g. https://opentrafficlights.org/spat/K648?time=2018-10-31T14:58:23.205Z).</p>
 
       <figure id="timeseries">
 <center>
@@ -214,25 +235,25 @@ The data publisher <em>must</em> offer HTTP polling and <em>should</em> offer pu
 
       <ul>
         <li>the <strong>topology</strong> of the intersection (MAP): when available, the identifiers of the lanes of the local authorities should be reused. Otherwise, a lane should be defined using <em>otl:Lane</em> and use <em>http:/​/​purl.org/dc/terms/description</em> and <em>http:/​/​www.opengis.net/#geosparql/wktLiteral</em> to allow user agents select a lane.</li>
-        <li>an Open <strong>license</strong> (cfr. <a href="https://creativecommons.org/publicdomain/zero/1.0/">CC0</a>)</li>
+        <li>an Open <strong>License</strong> (cfr. <a href="https://creativecommons.org/publicdomain/zero/1.0/">CC-0</a>)</li>
       </ul>
 
       <p>In next section, a method will be proposed for long-term preservation of these fragments.</p>
 
-      <h3 id="preservation">Preservation method</h3>
+      <h3 id="preservation">Preservation strategy</h3>
 
       <p>With our specification, one observation with the average size of 7 kilobytes is published every second which generates more than a half gigabytes per day. It is important that inactive data is removed from the Open Data server to keep it light-weight, however, these should still be available for retrieval.</p>
 
       <p>Storage solution tape require a different approach for preserving traffic lights data. As discussed in the background, tape is cost-efficient for large files. To circumvent this, Linked Data Fragments can be merged into one bigger Linked Data Fragment. This means that not the exact bytes are preserved, but only the statements. Validating with <em>graph isomorphism</em> <span class="references">[<a href="#ref-2">2</a>]</span> is not possible as the merged graph contains more statements than the original graphs that needs to be compared with, but the ideas of generating an equivalence mapping between blank nodes can be re-used for statements preservation. With these merged fragments archiving traffic lights data on tape becomes feasible. For disk archives, there is no need to create bigger files, thus archiving can be done traditionally as explained in <a href="#background">section 2</a>.</p>
 
-      <p>There are four aspects on synchronizing archives with our specification for traffc lights data (<a href="#timeseries-archive">Fig. 3</a>):</p>
+      <p>There are four aspects on synchronizing archives with our specification for traffic lights data (<a href="#timeseries-archive">Fig. 3</a>):</p>
 
-      <ul>
-        <li>1) archives need to harvest and optionally merge the Linked Data Fragments by following the provided hypermedia links in the Open Data interface</li>
-        <li>2) a hypermedia link is added to it’s previous harvested fragment</li>
-        <li>3) an access URL is exposed by the archive that redirects to the latest harvested fragment</li>
-        <li>4) the last published fragment of the Open Data interface links to this access URL so the Linked Open Data interface constitutes with the archive</li>
-      </ul>
+      <ol>
+        <li>archives need to harvest and optionally merge the Linked Data Fragments by following the provided hypermedia links in the Open Data interface</li>
+        <li>a hypermedia link is added to its previous harvested fragment</li>
+        <li>an access URL is exposed by the archive that redirects to the latest harvested fragment</li>
+        <li>the last published fragment of the Open Data interface links to this access URL so the Linked Open Data interface constitutes with the archive</li>
+      </ol>
 
       <figure id="timeseries-archive">
 <center>
@@ -248,13 +269,15 @@ The data publisher <em>must</em> offer HTTP polling and <em>should</em> offer pu
   <section id="demonstrator">
       <h2>Demonstrator</h2>
 
-      <p>This application shows live traffic lights data of the intersection in the <a href="https://www.openstreetmap.org/#map=19/51.21205/4.39717">Antwerp</a>. The source code can be found as a Codepen at <a href="https://codepen.io/brechtvdv/pen/BMQPNX/">https:/​/​codepen.io/brechtvdv/pen/BMQPNX/</a>. The dataset is available under an Open license at <a href="https://lodi.ilabt.imec.be/observer/rawdata/latest">https:/​/​lodi.ilabt.imec.be/observer/rawdata/latest</a>.</p>
+      <p>This application shows live traffic lights data of the intersection in <a href="https://www.openstreetmap.org/#map=19/51.21205/4.39717">Antwerp</a>. The source code can be found as a Codepen at <a href="https://codepen.io/brechtvdv/pen/BMQPNX/">https:/​/​codepen.io/brechtvdv/pen/BMQPNX/</a>. The dataset is freely available under an Open License at <a href="https://lodi.ilabt.imec.be/observer/rawdata/latest">https:/​/​lodi.ilabt.imec.be/observer/rawdata/latest</a>.</p>
 
-      <p>First, a user can select a departure lane and then a possible arrival lane to cross the intersection. This information comes from the <em>otl:Connection</em> that are defined as metadata.
-A live count-down is shown of the traffic light that is responsible for the chosen connection. The count-down is calculated with the minimum ending time of the state (current time - otl:minEndTime). The bigger then ‘&gt;’ sign indicates that the minimum and maximum end time are not equivalent, thus it is uncertain when the signal state ends. 
-Note that this application uses HTTP polling every 100ms. This causes sometimes a less fluent count-down.</p>
+      <p>First, a user can select a departure and arrival lane, indicating how the intersection will be crossed.
+The departure and arrival lane describe an <em>otl:Connection</em> that can be selected from this  information.
+A live count-down of the traffic light that is responsible for the chosen otl:Connection is shown.
+The count-down is calculated with the minimum ending time of the state (current time - otl:minEndTime). The bigger then ‘&gt;’ sign indicates that the minimum and maximum end time are not equivalent, thus it is uncertain when the signal state ends. 
+Note that this application uses HTTP polling every 100 milliseconds.</p>
 
-      <p>Underneath the count-down, a historic ‘time-to-green’ is shown. The line chart represents how many seconds a user had to wait before having green light. The horizontal lines correspond with a waiting time of 0 seconds, so this corresponds with green light.</p>
+      <p>Underneath the count-down, a historic ‘time-to-green’ is shown. The line chart represents how many seconds a user had to wait before getting a green light. The horizontal lines correspond with a waiting time of 0 seconds, and thus corresponds with a green light.</p>
 
       <figure id="codepen">
 <center>
@@ -265,9 +288,9 @@ Note that this application uses HTTP polling every 100ms. This causes sometimes 
         </figcaption>
 </figure>
 
-      <p class="codepen" data-height="510" data-theme-id="0" data-default-tab="result" data-user="brechtvdv" data-slug-hash="BMQPNX" style="height: 510px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid black; margin: 1em 0; padding: 1em;" data-pen-title="Wachttijd tot groenlicht">
+      <p class="codepen" data-height="510" data-theme-id="0" data-default-tab="result" data-user="brechtvdv" data-slug-hash="BMQPNX" style="height: 510px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid black; margin: 1em 0; padding: 1em;" data-pen-title="Time to Green">
   <span>See the Pen <a href="https://codepen.io/brechtvdv/pen/BMQPNX/">
-  Wachttijd tot groenlicht</a> by Brecht Van de Vyvere (<a href="https://codepen.io/brechtvdv">@brechtvdv</a>)
+  Time to Green</a> by Brecht Van de Vyvere (<a href="https://codepen.io/brechtvdv">@brechtvdv</a>)
   on <a href="https://codepen.io">CodePen</a>.</span>
 </p>
       <script async="" src="https://static.codepen.io/assets/embed/ei.js"></script>
@@ -277,13 +300,17 @@ Note that this application uses HTTP polling every 100ms. This causes sometimes 
   <section id="conclusion">
       <h2>Conclusion</h2>
 
-      <p>Cities can use the Open Traffic Lights <a href="#ontology">ontology</a> to publish their traffic lights data in a semantically interoperable way. As these terms are dereferenceable over HTTP, there is no need to have access to a high-level (mostly closed) standardisation profile (SPAT/MAP) to understand it’s meaning. The same applies for using a thesaurus for signal phases: expressing a signal phase is uniquely defined using a Web address instead of text.</p>
+      <p>Cities can use the Open Traffic Lights <a href="#ontology">ontology</a> to publish their traffic lights data in a semantically interoperable way.
+A TCS Open Data interface following the proposed <a href="#specification">specification</a> publishes every second one update. This lowers the barrier for Open Data re-users to create visualizations on top of it: they only have to retrieve the latest observation as fast as possible. Still, it is possible to create a more intelligent client that calculates a client-side count-down.
+While this cann improve the user experience, another information resource would have to be created to inform about priority updates (such as when an ambulance or police car influences the plan of the TCS.</p>
 
-      <p>A traffic lights Open Data interface following the proposed <a href="#specification">specification</a> publishes every second one update. This lowers the barrier for Open Data re-users to create visualisations on top of it: they only have to retrieve the latest observation as fast as possible. Still, it is possible to create a more intelligent client that calculates a client-side count-down. This could improve the user experience, however, extra polling would still be needed to check for emergency updates (e.g. ambulance that is passing).</p>
+      <p>This early work is open to feedback from other cities that want to publish TCS data.
+In earlier work, we proposed a Linked Times Series interface <span class="references">[<a href="#ref-5">5</a>]</span> as part of the publishing strategy for Flanders.
+In this ppaer, archives are able to download the historic data of cities through its hypermedia links, and optimize storage for tape storage.
+By linking the archived fragments in a similar way the archive is activated as an Open Data extension of the interface.
+In future work, an adaptation of the isomorphism algorithm of Carrol J. <span class="references">[<a href="#ref-2">2</a>]</span> is needed to open new doors for the preservation of combined Linked Data Fragments.
+Furthermore, we will benchmark HTTP polling versus publish/subscribe to have a better understanding how the speed of sensor observations impacts the server infrastructure needed to guarantee and acceptable end-user latency for the live updates.</p>
 
-      <p>In the Netherlands, the focus lies on maintaining a centralized, high-performant cloud-solution for data distribution (cfr. TLEX). While this is a necessity for self-driving cars, are the cities not responsible for publishing this data as Open Data? Who will preserve the historical values to retain better mobility policies? In future work, we will benchmark HTTP polling versus publish/subscribe to have a better understanding how the speed of sensor observations impacts the server infrastructure and what this implies for the user latency.</p>
-
-      <p>Archives are able to download the historic data of cities through it’s hypermedia links, but for tape storage it is advised to merge fragments together. Also, by linking the archived fragments in a similar way the archive is activated as an Open Data extension of the interface. In future work, an adaptation of the isomorphism algorithm of Carrol J. <span class="references">[<a href="#ref-2">2</a>]</span> is needed to open new doors for the preservation of combined Linked Data Fragments.</p>
     </section>
 
 </main>
@@ -299,6 +326,12 @@ Note that this application uses HTTP polling every 100ms. This causes sometimes 
   <dt id="ref-3">[3]</dt>
   <dd resource="https://dx.doi.org/10.1016/j.websem.2016.03.003" typeof="schema:Article">Verborgh, R., Vander Sande, M., Hartig, O., Van Herwegen, J., De Vocht, L., De Meester, B., Haesendonck, G., Colpaert, P.: Triple Pattern Fragments: a Low-cost Knowledge Graph Interface for the Web. Journal of Web Semantics. 37–38, (2016).</dd>
   <dt id="ref-4">[4]</dt>
+  <dd resource="https://dx.doi.org/10.1007/978-3-030-00668-6_15" typeof="schema:Article">Taelman, R., Van Herwegen, J., Vander Sande, M., Verborgh, R.: Comunica: a Modular SPARQL Query Engine for the Web. In: Vrandečić, D., Bontcheva, K., Suárez-Figueroa, M.C., Presutti, V., Celino, I., Sabou, M., Kaffee, L.-A., and Simperl, E. (eds.) Proceedings of the 17th International Semantic Web Conference. pp. 239–255. Springer (2018).</dd>
+  <dt id="ref-5">[5]</dt>
+  <dd resource="#opendataflanders" typeof="schema:Article">Rojas Meléndez, J.A., Van de Vyvere, B., Gevaert, A., Taelman, R., Colpaert, P., Verborgh, R.: A Preliminary Open Data Publishing Strategy for Live Data in Flanders. In: WWW2018, the International World Wide Web Conference. pp. 1847–1853. ACM Press (2018).</dd>
+  <dt id="ref-6">[6]</dt>
+  <dd resource="#realtimequery" typeof="schema:Article">Taelman, R., Verborgh, R., Colpaert, P., Mannens, E.: Moving Real-Time Linked Data Query Evaluation to the Client. In: European Semantic Web Conference. pp. 3–7. Springer (2016).</dd>
+  <dt id="ref-7">[7]</dt>
   <dd resource="#barbieri2010proposal" typeof="schema:Article">Barbieri, D.F., Valle, E.D.: A proposal for publishing data streams as linked data. In: Linked Data on the Web Workshop (2010).</dd>
 </dl>
 </section>

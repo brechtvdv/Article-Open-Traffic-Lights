@@ -4,7 +4,7 @@
     <https://opentrafficlights.org/id/signalgroup/K648/6> otl:signalState _:b0.
     _:b0 a otl:SignalState;
     otl:signalPhase <https://w3id.org/opentrafficlights/thesauri/signalphase/0>;
-    otl:minEndTime "2018-10-31T14:58:37.605Z"^^xsd:date;
-    otl:maxEndTime "2018-10-31T14:59:40.605Z"^^xsd:date.
+    otl:minEndTime "2018-10-31T14:58:37.605Z"^^xsd:dateTime;
+    otl:maxEndTime "2018-10-31T14:59:40.605Z"^^xsd:dateTime.
 }
-<https://opentrafficlights.org/spat/K648?time=2018-10-31T14:58:23.205Z> prov:generatedAtTime "2019-02-14T17:43:54.297Z"^^xsd:date.
+<https://opentrafficlights.org/spat/K648?time=2018-10-31T14:58:23.205Z> prov:generatedAtTime "2019-02-14T17:43:54.297Z"^^xsd:dateTime.
