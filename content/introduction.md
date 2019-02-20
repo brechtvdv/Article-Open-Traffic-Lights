@@ -1,3 +1,5 @@
+<div class="printonly">This is a print-version of a paper first written for the Web. The Web-version is available at https://brechtvdv.github.io/Article-Open-Traffic-Lights</div>
+
 ## Introduction
 {:#introduction}
 
