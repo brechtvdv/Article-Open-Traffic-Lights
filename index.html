@@ -62,7 +62,7 @@ Long-term preservation with tape storage becomes feasible when archives shift fr
 <main>
   <!-- Add sections by specifying their file name, excluding the '.md' suffix. -->
   <section>
-      <div class="printonly">This is a print-version of a paper first written for the Web. The Web-version is available at https://brechtvdv.github.io/Article-Open-Traffic-Lights</div>
+      <div class="printonly">This is a print-version of a paper first written for the Web. The Web-version is available at <a href="https://brechtvdv.github.io/Article-Open-Traffic-Lights">https:/​/​brechtvdv.github.io/Article-Open-Traffic-Lights</a>.</div>
 
       <h2 id="introduction">Introduction</h2>
 
@@ -76,10 +76,10 @@ Today, Traffic Control Systems (TCS) do not differ much from the model installed
 Not only self-driving cars may benefit, also cyclists seeking green lights on a rainy day, or a citizen willing to analyze the crossroad’s efficiency near their home.
 In the Netherlands, <a href="http://www.nm-magazine.nl/artikelen/talking-traffic-applicaties-voor-de-ivri/">hundreds of these TCSs are already converted</a> through the public-private coorporation <a href="https://www.talking-traffic.com/nl/">Talking Traffic</a>.
 A centralized approach using asynchronous messaging is implemented with the Traffic Live Exchange (<a href="https://www.talking-traffic.com/nl/nieuws/stem-op-tlex">TLEX</a>) system which distributes data between TCSs and the end-user in both directions.
-The data so far has not been published publucly, but only been made available in partner applications for end-users.
+The data so far has not been published publicly, but only been made available in partner applications for end-users.
 In the city of Antwerp (Belgium), one geographical <a href="https://www.imeccityofthings.be/nl/smart-zone">zone</a> is accommodated with different kinds of sensors to conduct experiments, such as the publication of its traffic lights data that is described in this paper.</p>
 
-      <p>Traffic lights <a href="https://www.etsi.org/deliver/etsi_ts/103300_103399/103301/01.02.01_60/ts_103301v010201p.pdf">data standards</a> are already created by the European Telecommunications Standards Institue (ETSI), yet identifiers are scoped to the intersection, region or country. With Linked Data (<a href="">Section 2</a>), traffic light streams may become interoperable worldwide and may allow for a decentralized data publishing strategy.
+      <p>Traffic lights <a href="https://www.etsi.org/deliver/etsi_ts/103300_103399/103301/01.02.01_60/ts_103301v010201p.pdf">data standards</a> are already created by the European Telecommunications Standards Institute (ETSI), yet identifiers are scoped to the intersection, region or country. With Linked Data (<a href="">Section 2</a>), traffic light streams may become interoperable worldwide and may allow for a decentralized data publishing strategy.
 This way, any client, whether it is a route planners, a self-driving car or a data analyst, can follow links to and from other datasets while querying.</p>
 
       <p>Preserved data from among others these TCSs can be used by digital scholars, citizens and cities to study the city’s digital pulse.
@@ -302,11 +302,11 @@ Note that this application uses HTTP polling every 100 milliseconds.</p>
 
       <p>Cities can use the Open Traffic Lights <a href="#ontology">ontology</a> to publish their traffic lights data in a semantically interoperable way.
 A TCS Open Data interface following the proposed <a href="#specification">specification</a> publishes every second one update. This lowers the barrier for Open Data re-users to create visualizations on top of it: they only have to retrieve the latest observation as fast as possible. Still, it is possible to create a more intelligent client that calculates a client-side count-down.
-While this cann improve the user experience, another information resource would have to be created to inform about priority updates (such as when an ambulance or police car influences the plan of the TCS.</p>
+While this can improve the user experience, another information resource would have to be created to inform about priority updates (such as when an ambulance or police car influences the plan of the TCS.</p>
 
       <p>This early work is open to feedback from other cities that want to publish TCS data.
 In earlier work, we proposed a Linked Times Series interface <span class="references">[<a href="#ref-5">5</a>]</span> as part of the publishing strategy for Flanders.
-In this ppaer, archives are able to download the historic data of cities through its hypermedia links, and optimize storage for tape storage.
+In this paper, archives are able to download the historic data of cities through its hypermedia links, and optimize storage for tape storage.
 By linking the archived fragments in a similar way the archive is activated as an Open Data extension of the interface.
 In future work, an adaptation of the isomorphism algorithm of Carrol J. <span class="references">[<a href="#ref-2">2</a>]</span> is needed to open new doors for the preservation of combined Linked Data Fragments.
 Furthermore, we will benchmark HTTP polling versus publish/subscribe to have a better understanding how the speed of sensor observations impacts the server infrastructure needed to guarantee and acceptable end-user latency for the live updates.</p>
