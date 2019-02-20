@@ -21,6 +21,6 @@ The Resource Description Framework ([RDF](https://en.wikipedia.org/wiki/Resource
 
 [Comunica](cite:cites comunica) is a framework to query over the various Web interfaces in the Linked Data Fragments axis.
 It interprets the metadata and controls to evaluate a query.
-[Finding a fragmentation strategy](cite:cites opendataflanders) for web archives and time series data than can be consumed [by generic clients](cite:cites realtimequery) is still a challenge.
+[Finding a fragmentation strategy](cite:cites opendataflanders) for web archives and time series data that can be consumed [by generic clients](cite:cites realtimequery) is still a challenge.
 In this paper we try to suggest a solution in which generic clients can still query over the data.
 
