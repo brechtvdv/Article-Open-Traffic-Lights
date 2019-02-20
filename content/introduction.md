@@ -3,13 +3,27 @@
 ## Introduction
 {:#introduction}
 
-Sensors are progressively getting installed in the public domain by cities. This is motivated to attain better data-driven policies, thus becoming a smarter city. Sharing mobility data is crucial due to the rising of new transport modi (steps, shared cars etc.) and the desire to achieve more sustainable traffic planning.
+Smarter cities try to make more evidence-based decisions based on, for instance, sensors installed in the city.
+In the case of sensors, not only the live values are important, also historical values need to be preserved and available.
+This is government data and policy decisions world-wide – such as open by default, the freedom of information act or the public sector information directive – mandate that government data must be made freely available to everyone.
+When historic values of smart city datasets become available, everyone can join an evidence-based debate on the city’s future.
 
-Traffic lights, the first one already dating from [1868](https://en.wikipedia.org/wiki/Traffic_light), are being converted into Internet connected devices, so called intelligent Traffic Control Systems (TCS). In the Netherlands, hundreds of these TCSs are already [converted](http://www.nm-magazine.nl/artikelen/talking-traffic-applicaties-voor-de-ivri/) through the public-private coorporation [Talking Traffic](https://www.talking-traffic.com/nl/). A centralized approach using asynchronous messaging is implemented with the Traffic Live Exchange ([TLEX](https://www.talking-traffic.com/nl/nieuws/stem-op-tlex)) system which distributes data between TCSs and the end-user in both directions. In the city of Antwerp (Belgium), one geographical [zone](https://www.imeccityofthings.be/nl/smart-zone) is accommodated with different kinds of sensors to conduct experiments, such as the publication of it's traffic lights data that is described in this paper.
+The first traffic light was installed in London in [1868](https://en.wikipedia.org/wiki/Traffic_light).
+Today, Traffic Control Systems (TCS) do not differ much from the model installed 1.5 centuries ago, yet we can imagine the potential of making TCSs internet-connected and making traffic light statuses available as Open Data.
+Not only self-driving cars may benefit, also cyclists seeking green lights on a rainy day, or a citizen willing to analyze the crossroad’s efficiency near their home.
+In the Netherlands, [hundreds of these TCSs are already converted](http://www.nm-magazine.nl/artikelen/talking-traffic-applicaties-voor-de-ivri/) through the public-private coorporation [Talking Traffic](https://www.talking-traffic.com/nl/).
+A centralized approach using asynchronous messaging is implemented with the Traffic Live Exchange ([TLEX](https://www.talking-traffic.com/nl/nieuws/stem-op-tlex)) system which distributes data between TCSs and the end-user in both directions.
+The data so far has not been published publucly, but only been made available in partner applications for end-users.
+In the city of Antwerp (Belgium), one geographical [zone](https://www.imeccityofthings.be/nl/smart-zone) is accommodated with different kinds of sensors to conduct experiments, such as the publication of its traffic lights data that is described in this paper.
 
-Traffic lights [data standards](https://www.etsi.org/deliver/etsi_ts/103300_103399/103301/01.02.01_60/ts_103301v010201p.pdf) are already created by the European Telecommunications Standards Institue (ETSI), but identifiers are scoped to the intersection, region or country. With Linked Data ([section 2]()), traffic light streams become interoperable worldwide and allows decentralized data publishing. This would allow routeplanners to discover traffic lights data from other datasets, e.g. the road network.
+Traffic lights [data standards](https://www.etsi.org/deliver/etsi_ts/103300_103399/103301/01.02.01_60/ts_103301v010201p.pdf) are already created by the European Telecommunications Standards Institue (ETSI), yet identifiers are scoped to the intersection, region or country. With Linked Data ([Section 2]()), traffic light streams may become interoperable worldwide and may allow for a decentralized data publishing strategy.
+This way, any client, whether it is a route planners, a self-driving car or a data analyst, can follow links to and from other datasets while querying.
 
-<!-- Describe archiving need -->
-Web archives are increasingly re-used by scholars in the social sciences and humanities for studying phenomena [](cite:cites eveline2019webarchiving). In [section 3](#preservation), we propose a method how these archives also can preserve sensor observations and allow linking from the Open Data publisher to the archive. This way, digital scholars and cities can study phenomena of the city's digital pulse.
+Preserved data from among others these TCSs can be used by digital scholars, citizens and cities to study the city’s digital pulse.
+Such Web archives are already used by scholars in, among others, the social sciences and humanities for studying phenomena [](cite:cites eveline2019webarchiving).
+In this paper, we propose a publishing strategy for data from TCSs, and zoom in on the aspect of preservation.
 
-This paper describes some background in [section 2](#background). Next, the contributions of the Open Traffic Lights project are explained in [section 3](#implementation). A end-user application is showcased in [section 4](#demonstrator). Finally, we discuss our conclusions in [section 5](#conclusion).
+The state of the art is described in [Section 2](#background).
+In [Section 3](#preservation), we propose a method how these archives also can preserve sensor observations and allow linking from the Open Data publisher to the archive.
+Next, an end-user application with code-snippet is demonstrated in [Section 4](#demonstrator).
+Finally, we discuss our conclusions in [Section 5](#conclusion).

@@ -1,10 +1,13 @@
 ##  Conclusion
 {:#conclusion}
 
-Cities can use the Open Traffic Lights [ontology](#ontology) to publish their traffic lights data in a semantically interoperable way. As these terms are dereferenceable over HTTP, there is no need to have access to a high-level (mostly closed) standardisation profile (SPAT/MAP) to understand it's meaning. The same applies for using a thesaurus for signal phases: expressing a signal phase is uniquely defined using a Web address instead of text. 
+Cities can use the Open Traffic Lights [ontology](#ontology) to publish their traffic lights data in a semantically interoperable way.
+A TCS Open Data interface following the proposed [specification](#specification) publishes every second one update. This lowers the barrier for Open Data re-users to create visualizations on top of it: they only have to retrieve the latest observation as fast as possible. Still, it is possible to create a more intelligent client that calculates a client-side count-down.
+While this cann improve the user experience, another information resource would have to be created to inform about priority updates (such as when an ambulance or police car influences the plan of the TCS.
 
-A traffic lights Open Data interface following the proposed [specification](#specification) publishes every second one update. This lowers the barrier for Open Data re-users to create visualisations on top of it: they only have to retrieve the latest observation as fast as possible. Still, it is possible to create a more intelligent client that calculates a client-side count-down. This could improve the user experience, however, extra polling would still be needed to check for emergency updates (e.g. ambulance that is passing).
-
-In the Netherlands, the focus lies on maintaining a centralized, high-performant cloud-solution for data distribution (cfr. TLEX). While this is a necessity for self-driving cars, are the cities not responsible for publishing this data as Open Data? Who will preserve the historical values to retain better mobility policies? In future work, we will benchmark HTTP polling versus publish/subscribe to have a better understanding how the speed of sensor observations impacts the server infrastructure and what this implies for the user latency.
-
-Archives are able to download the historic data of cities through it's hypermedia links, but for tape storage it is advised to merge fragments together. Also, by linking the archived fragments in a similar way the archive is activated as an Open Data extension of the interface. In future work, an adaptation of the isomorphism algorithm of [Carrol J.](cite:cites carroll2002matching) is needed to open new doors for the preservation of combined Linked Data Fragments.
+This early work is open to feedback from other cities that want to publish TCS data.
+In earlier work, we proposed a [Linked Times Series interface](cite:cites opendataflanders) as part of the publishing strategy for Flanders.
+In this ppaer, archives are able to download the historic data of cities through its hypermedia links, and optimize storage for tape storage.
+By linking the archived fragments in a similar way the archive is activated as an Open Data extension of the interface.
+In future work, an adaptation of the isomorphism algorithm of [Carrol J.](cite:cites carroll2002matching) is needed to open new doors for the preservation of combined Linked Data Fragments.
+Furthermore, we will benchmark HTTP polling versus publish/subscribe to have a better understanding how the speed of sensor observations impacts the server infrastructure needed to guarantee and acceptable end-user latency for the live updates.
