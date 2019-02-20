@@ -59,7 +59,7 @@ The data publisher _must_ offer HTTP polling and _should_ offer pub/sub:
 * **HTTP polling**: a Linked Data Fragment which is a HTTP document containing one or more of the most recent observations (e.g. _https://lodi.ilabt.imec.be/observer/rawdata/latest_). The _ETag_ header must be added to enable HTTP caching.
 * **publish/subscribe**: every update corresponds with one observation like [](#example-observation). Preferably, HTTP-based [Server-Sent Events](https://developer.mozilla.org/en-US/docs/Web/API/Server-sent_events/Using_server-sent_events) _should_ be chosen.
 
-Historical data are published as Linked Data Fragments similar to the HTTP polling approach. [](#timeseries) shows that all observations are ordered on a time axis: the Linked Data Fragments **select** data based on time ranges. To allow a HTTP client to automatically discover older observations, a _hydra:previous_ **hypermedia** link _must_ be added using the [Hydra](https://www.hydra-cg.com/spec/latest/core/) vocabulary. _Hydra:next_ links _should_ be added to allow time range retrieval in both directions. Also, the URL of the fragment is identified using the datetime of it's first observation (e.g. https://opentrafficlights.org/spat/K648?time=2018-10-31T14:58:23.205Z).
+Historical data are published as Linked Data Fragments similar to the HTTP polling approach. [](#timeseries) shows that all observations are ordered on a time axis: the Linked Data Fragments **select** data based on time ranges. To allow a HTTP client to automatically discover older observations, a _hydra:previous_ **hypermedia** link _must_ be added using the [Hydra](https://www.hydra-cg.com/spec/latest/core/) vocabulary. _Hydra:next_ links _should_ be added to allow time range retrieval in both directions. Also, the URL of the fragment is identified using the datetime of its first observation (e.g. https://opentrafficlights.org/spat/K648?time=2018-10-31T14:58:23.205Z).
 
 <figure id="timeseries">
 <center>
@@ -96,7 +96,7 @@ Storage solution tape require a different approach for preserving traffic lights
 There are four aspects on synchronizing archives with our specification for traffic lights data ([](#timeseries-archive)):
 
  1. archives need to harvest and optionally merge the Linked Data Fragments by following the provided hypermedia links in the Open Data interface
- 2. a hypermedia link is added to it's previous harvested fragment
+ 2. a hypermedia link is added to its previous harvested fragment
  3. an access URL is exposed by the archive that redirects to the latest harvested fragment
  4. the last published fragment of the Open Data interface links to this access URL so the Linked Open Data interface constitutes with the archive
 
