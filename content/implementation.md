@@ -3,9 +3,9 @@
 
 The [Open Traffic Lights](https://opentrafficlights.org) project started from the need to publish the traffic lights data from the [Smart Zone](https://www.imeccityofthings.be/nl/smart-zone) in [Antwerp](https://www.openstreetmap.org/#map=19/51.21205/4.39717) as Open Data. By using the [Resource Description Framework]() (RDF) as a common model for representing knowledge, sensor observations are syntactically interoperable and can be integrated into one Knowledge Graph. To enable this for traffic lights observations, an ontology is needed to describe the signal phase and timing and how traffic can move over the intersection.
 
-The MAP and SPAT messages are available through a closed message broker (cfr. [MQTT](https://mosquitto.org/)) with a frequency of 200 milliseconds which corresponds with the cycle time of the Traffic Control System of the intersection. In the [specification](#Specification) section, we will describe how the amount of data messages can be optimized for Open Data publishing and how historical information is still retrievable, in contrast to the broker interface.
+The MAP and SPAT messages are available through a closed message broker (cfr. [MQTT](https://mosquitto.org/)) with a frequency of 200 milliseconds which corresponds with the cycle time of the Traffic Control System of the intersection. In the [specification](#Specification) section, we will describe how the quantity of data messages can be optimized for Open Data publishing and how historical information is still retrievable, in contrast to the broker interface.
 
-The ontology is based on two Flemish profiles: the MapData (MAP) and the Signal Phase and Timing (SPAT) profile. While MAP focuses on describing the topology of an intersection, describes SPAT the timing of the phase that a traffic light adheres to. Both profiles are conform European Telecommunications Standards Institute (ETSI) standards: [ETSI 103 301](https://www.etsi.org/deliver/etsi_ts/103300_103399/103301/01.01.01_60/ts_103301v010101p.pdf), [ETSI TS102 894-2](https://www.etsi.org/deliver/etsi_ts/102800_102899/10289402/01.01.01_60/ts_10289402v010101p.pdf), but are not available under an Open license.
+The ontology is based on two Flemish profiles: the MapData (MAP) and the Signal Phase and Timing (SPAT) profile. While MAP focuses on describing the topology of an intersection, SPAT describes the timing of the phase that a traffic light adheres to. Both profiles conform to European Telecommunications Standards Institute (ETSI) standards: [ETSI 103 301](https://www.etsi.org/deliver/etsi_ts/103300_103399/103301/01.01.01_60/ts_103301v010101p.pdf), [ETSI TS102 894-2](https://www.etsi.org/deliver/etsi_ts/102800_102899/10289402/01.01.01_60/ts_10289402v010101p.pdf), but are not publicly available.
 
 ### Ontology
  {:#ontology}
@@ -21,9 +21,9 @@ Classes and properties for describing MAP/SPAT related knowledge.
 </figcaption>
 </figure>
 
-According to the driving direction of the road user, the lane _otl:Lane_ that goes towards the conflict area of the intersection is described with a _otl:departureLane_, mutatis mutandis for the _otl:arrivalLane_. If a road user can maneuver from a departure lane towards an arrival lane, than this is called a _otl:Connection_. 
+According to the driving direction of the road user, the lane _otl:Lane_ that goes towards the conflict area of the intersection is described with a _otl:departureLane_, mutatis mutandis for the _otl:arrivalLane_. If a road user can travel from a departure lane towards an arrival lane, than this is called a _otl:Connection_. 
 
-A connection is possible according to the _otl:SignalState_ of the traffic light. Instead of referring to a traffic light, the SPAT profile coins the term _otl:SignalGroup_ for the collection of traffic lights that continuously share a signal state. The latter is characterized by the following relations:
+Travel is possible according to the _otl:SignalState_ of the traffic light. Instead of referring to a traffic light, the SPAT profile coins the term _otl:SignalGroup_ for the collection of traffic lights that continuously share a signal state. The latter is characterized by the following relations:
 
 * **otl:signalPhase**: points to a [SKOS concept](http://www.w3.org/2004/02/skos/core#Concept) that represents the signal phase. This concept represents a color (green, orange flashing, etc.).
 * **otl:minEndTime**: the earliest time that the signal phase will change. 
@@ -42,12 +42,14 @@ The specification contains three aspects:
 * how the server interface exposes the live observations,
 * how historical observations must be published
 
-Every observation _must_ be defined using [instantaneous graphs (iGraphs) and stream graphs (sGraphs)](cite:cites barbieri2010proposal). The iGraph contains the observated content, in this case the signal phase and timing of signal group(s). The sGraph describes metadata about the observation: when the observation is generated. [](#example-observation) shows as example the signal phase and timing observed at 2018-10-31T14:58:23.205Z for signal group *https://opentrafficlights.org/id/signalgroup/K648/6*. 
+A data publisher _must_ publish observations with [instantaneous graphs (iGraphs)](cite:cites barbieri2010proposal) which represent a part of the traffic lights stream. This iGraph is a named graph that annotates one or more observations with a time stamp. A publisher _must_ use _prov:generatedAtTime_ to indicate the iGraph's timestamp.
+[](#example-observation) shows an iGraph *https://opentrafficlights.org/spat/K648?time=2018-10-31T14:58:23.205Z* that contains the signal phase and timing of signal group *https://opentrafficlights.org/id/signalgroup/K648/6*.
+The iGraph _should_ be extended with the [Sensor, Observation, Sample, and Actuator](cite:cites janowicz2018sosa) (SOSA) ontology to semantically describe  an observation with its result, observed property etc.
 
 <figure id="example-observation" class="listing">
 ````/code/example-observation.txt````
 <figcaption markdown="block">
-Observation that signal group 6 has a certain state at 2018-10-31T14:58:23.205Z.
+Example of an iGraph _https://opentrafficlights.org/spat/K648?time=2018-10-31T14:58:23.205Z_ which time annotates the state of a signal group. This state _\_:b0_ links to a phase (_https://w3id.org/opentrafficlights/thesauri/signalphase/0_) and is constrained with a time interval when it will end.
 </figcaption>
 </figure>
 
