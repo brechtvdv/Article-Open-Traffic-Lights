@@ -84,8 +84,8 @@ A client can search for observations with a datetime as input parameter.
 
 Finally, following **metadata** _must_ be added to every fragment:
 
-* the **topology** of the intersection (MAP): when available, the identifiers of the lanes of the local authorities should be reused. Otherwise, a lane should be defined using _otl:Lane_ and use _http://purl.org/dc/terms/description_ and _http://www.opengis.net/#geosparql/wktLiteral_ to allow user agents select a lane.
-* an Open **License** (cfr. [CC-0](https://creativecommons.org/publicdomain/zero/1.0/))
+* the **topology** of the intersection (MAP): when available, the identifiers of the lanes of the local authorities should be reused. Otherwise, a lane should be defined using _otl:Lane_ and use _http://purl.org/dc/terms/description_ and _http://www.opengis.net/#geosparql/wktLiteral_ so user agents can discover which travels are possible and on which signal group this depends (_otl:signalGroup_).    
+* an Open **License** (cfr. [CC-0](https://creativecommons.org/publicdomain/zero/1.0/), [CC-BY](https://creativecommons.org/licenses/by/4.0/) etc.) is needed so the data complies under the [Open definition](http://opendefinition.org/) and that reusers can check whether its intentions with the data are in line with the legal terms
 
 In next section, a method will be proposed for long-term preservation of these fragments.
 
