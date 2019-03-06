@@ -17,11 +17,13 @@ The Resource Description Framework ([RDF](https://en.wikipedia.org/wiki/Resource
 
 ### Linked Data Fragments
 
-[Linked Data Fragments](cite:cites tpf) is a framework that allows to describe the fragmentation of a Linked Data dataset. Fragments are defined with three parts:
+[Linked Data Fragments](cite:cites tpf) is a conceptual framework that allows to compare Web interfaces (a datadump, SPARQL-endpoint, subject page...) that publish RDF datasets by describing how they publish fragments of these datasets. Such a Linked Data Fragment consists of three parts: 
 
-* a **selector** defines which parts of the dataset belong to a fragment. For example: only sensor observations that are generated between a certain time interval.
+* a **selector** defines which parts of the datasets belong to a fragment. For example: only sensor observations that are generated between a certain time interval.
 * **metadata** about the fragment. For example: the license that is applied.
 * **controls** help clients to retrieve more relevant data. For example: where a previous page of a paged collection can be found.
+
+The Linked Data Fragments axis shows a uniform view over the trade-offs (caching, bandwidth etc.) that these Web interfaces bring in respect to the client and server effort. For example: an interface that offers a datadump requires a high effort from the client to solve its task.
 
 [Comunica](cite:cites comunica) is a framework to query over the various Web interfaces in the Linked Data Fragments axis.
 It interprets the metadata and controls to evaluate a query.
