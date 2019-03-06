@@ -7,9 +7,13 @@ Digital content can be preserved on tape or on disk storage. In general, tape is
 
 To archive a document, this is traditionally done by generating a hash (e.g. [MD5](https://en.wikipedia.org/wiki/MD5)) from the document, copying the document together with a metadata file containing the hash (cfr. [sidecar](https://en.wikipedia.org/wiki/Sidecar_file)) to the archive system and verify the content by regenerating the hash on the archive.
 
-### RDF isomorphism
+### Resource Description Framework
 
-The Resource Description Framework ([RDF](https://en.wikipedia.org/wiki/Resource_Description_Framework)) is a graph-based model to describe statements. Every RDF statement corresponds with a triple (subject-predicate-object): the _subject_ is a resource that something is said about. The subject is related to an _object_ through a _predicate_. For example, 'the traffic light is lighted green': 'the traffic light' is the subject, 'green' is the object and 'is lighted' is the predicate that expresses the relation. A RDF statement is actually a small graph. Two graphs are isomorph when a bijection is possible as described in the algorithm by [Carrol J.](cite:cites carroll2002matching). This algorithm generates a hash for every blank node to allow equivalence checking and attempts to create a bijection between the graphs. If a bijection is created, the graphs are isomorph.
+The Resource Description Framework ([RDF](https://en.wikipedia.org/wiki/Resource_Description_Framework)) is a graph-based model to describe statements. Every RDF statement corresponds with a triple (subject-predicate-object): the _subject_ is a resource that something is said about. The subject is related to an _object_ through a _predicate_. For example, 'the traffic light is lighted green': 'the traffic light' is the subject, 'green' is the object and 'is lighted' is the predicate that expresses the relation.
+
+### Memento TimeMaps
+
+[Memento](cite:cites van2009memento) is a HTTP framework that allows a client to retrieve a time specific version (called a Memento) of an Original Web resource that exists or used to exist. One of the techniques to do this is by retrieving a TimeMap that describes a list of Mementos of the Original Web resource with its valid timestamps. 
 
 ### Linked Data Fragments
 

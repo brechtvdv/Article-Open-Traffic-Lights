@@ -53,7 +53,7 @@ Example of an iGraph _https://opentrafficlights.org/spat/K648?time=2018-10-31T14
 </figcaption>
 </figure>
 
-SPAT messages are sent every cycle time of a Traffic Control System. For the TCS in Antwerp, which has a cycle time every 200 ms, this corresponds with 5 iGraphs per second. To lower the number of messages, a server _must_ calculate the final outcome that an end-user will see and only publish if this changes. A new observation therefore is published whenever the minimum and maximum count-down (now - otl:minEndTime/otl:maxEndTime) in seconds or the otl:signalPhase changes. This results in the generation of one iGraph per second.
+SPAT messages are sent every cycle time of a Traffic Control System. For the TCS in Antwerp, which has a cycle time every 200 ms, this corresponds with 5 iGraphs per second. For our use case whole second resolution suffices as we want to show a live count-down based on seconds. To lower the number of messages, a server _must_ calculate the final outcome that an end-user will see and only publish if this changes. A new observation therefore is published whenever the minimum and maximum count-down (now - otl:minEndTime/otl:maxEndTime) in seconds or the otl:signalPhase changes. This results in the generation of one iGraph per second.
 
 There are two main strategies to publish live data: a publish/subscribe system where an iGraph is pushed to the client and HTTP polling where the client pulls a Linked Data Fragment repeatedly. 
 The data publisher _must_ offer HTTP polling and _should_ offer pub/sub:
@@ -73,7 +73,7 @@ Timeseries are published as a paged collection of time sorted Linked Data Fragme
 </figure>
 
 Another feature that the interface _should_ expose is *[templated links](https://www.hydra-cg.com/spec/latest/core/#templated-links)*: a client should be able to construct a URL to retrieve the fragment that contains observations around a certain *time* parameter. [](#templated-link) gives an example on how to express this **hypermedia** control. The server _must_ redirect with a HTTP 302 status code to the fragment whose time range encapsulates *time*. When missing, the last fragment is returned.
-While this approach may seem to abolish the paged links, paged links help lowering the barrier for Open Data reusers and Web crawlers that want to follow links instead of generating URLs.
+With the templated links hypermedia control, Open Data reusers don't have to crawl through all the fragments to fetch observations between a certain time range. Technically, templated links can replace pagination hypermedia links, but these links are necessary to lower the barrier for Open Data reusers such as [regular Web crawlers](cite:cites niu2012overview).
 
 <figure id="templated-link" class="">
 ````/code/templated-link.txt````
@@ -111,7 +111,6 @@ There are four aspects on synchronizing archives with our specification for traf
 An archive can harvest the historical observations, optionally merge the Linked Data statements of multiple documents into one document, and link everything together through previous links.
 </figcaption>
 </figure>
-
 
 
 
