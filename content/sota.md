@@ -17,7 +17,7 @@ The Resource Description Framework ([RDF](https://en.wikipedia.org/wiki/Resource
 
 ### Linked Data Fragments
 
-[Linked Data Fragments](cite:cites tpf) is a conceptual framework that allows to compare Web interfaces (a datadump, SPARQL-endpoint, subject page...) that publish RDF datasets by describing how they represent fragments of these datasets. Such a Linked Data Fragment consists of three parts: 
+[Linked Data Fragments](cite:cites tpf) is a conceptual framework that allows to compare Linked Data Web interfaces (a datadump, SPARQL-endpoint, subject page...) by describing how they publish fragments of their RDF datasets. Such a Linked Data Fragment consists of three parts: 
 
 * a **selector** defines which parts of the datasets belong to a fragment. For example: only sensor observations that are generated between a certain time interval.
 * **metadata** about the fragment. For example: the license that is applied.
