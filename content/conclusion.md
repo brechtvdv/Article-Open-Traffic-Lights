@@ -9,5 +9,5 @@ This early work is open to feedback from other cities that want to publish TCS d
 In earlier work, we proposed a [Linked Times Series interface](cite:cites opendataflanders) as part of the publishing strategy for Flanders.
 In this paper, archives are able to download the historic data of cities through its hypermedia links, and optimize storage for tape storage.
 By linking the archived fragments in a similar way the archive is activated as an Open Data extension of the interface.
-In future work, an adaptation of the isomorphism algorithm of [Carrol J.](cite:cites carroll2002matching) is needed to open new doors for the preservation of combined Linked Data Fragments.
+In future work, we will work on improving the discoverability of traffic lights datastreams by applying the [Semantic Sensor Network](cite:cites compton2012ssn) and the [Vocabulary and Catalog for Linked Streams](cite:cites tommasini2018vocals) ontologies. Also, we will explore how Memento TimeMaps compare to our time sorted Linked Data Fragments solution.
 Furthermore, we will benchmark HTTP polling versus publish/subscribe to have a better understanding how the speed of sensor observations impacts the server infrastructure needed to guarantee and acceptable end-user latency for the live updates.
