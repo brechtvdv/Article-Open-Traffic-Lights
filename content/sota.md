@@ -3,9 +3,9 @@
 
 ### Preservation
 
-Digital content can be preserved on tape or on disk storage. In general, tape is used by TV broadcasters or audiovisual archives, because of its [low pricing](https://searchdatabackup.techtarget.com/news/1507559/Choosing-a-data-archiving-strategy-Disk-archiving-vs-tape-archiving) for big volumes (>50 terabytes), especially on the long-term. A tape drive is cost-effective when writing or reading large files, because the position of the tape drive reader does not need to be moved frequently contrary to small files. This deficit is solved by either bundling small files together (e.g. zip, tar) or saving them on disk storage. The latter benefits over tape with faster search and retrievable times and the ability to preserve small files more efficiently.
+Digital content can be preserved on long-term on tape or on disk storage. In general, tape is used by TV broadcasters or audiovisual archives, because of its [low pricing](https://searchdatabackup.techtarget.com/news/1507559/Choosing-a-data-archiving-strategy-Disk-archiving-vs-tape-archiving) for big volumes (>50 terabytes). A tape drive is cost-effective when writing or reading large files, because the position of the tape drive reader does not need to be moved frequently contrary to small files. This deficit is solved by either bundling small files together (e.g. zip, tar) or saving them on disk storage. The latter benefits over tape with faster search and retrievable times and the ability to preserve small files more efficiently.
 
-To archive a document, this is traditionally done by generating a hash (e.g. [MD5](https://en.wikipedia.org/wiki/MD5)) from the document, copying the document together with a metadata file containing the hash (cfr. [sidecar](https://en.wikipedia.org/wiki/Sidecar_file)) to the archive system and verify the content by regenerating the hash on the archive.
+To archive a document, this is traditionally done by generating a hash (e.g. [MD5](https://en.wikipedia.org/wiki/MD5)) of the document, copying the document together with a metadata file containing the hash (cfr. [sidecar](https://en.wikipedia.org/wiki/Sidecar_file)) to the archive system and verify the content by regenerating the hash on the archive.
 
 ### Resource Description Framework
 
