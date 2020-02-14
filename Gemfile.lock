@@ -8,7 +8,7 @@ GEM
     bibmarkdown (2.0.0)
       citeproc-ruby
       csl-styles
-    bibtex-ruby (4.4.7)
+    bibtex-ruby (5.1.1)
       latex-decode (~> 0.0)
     citeproc (1.0.9)
       namae (~> 1.0)
