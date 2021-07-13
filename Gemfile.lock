@@ -3,8 +3,8 @@ GEM
   specs:
     activesupport (3.1.12)
       multi_json (~> 1.0)
-    addressable (2.5.2)
-      public_suffix (>= 2.0.2, < 4.0)
+    addressable (2.8.0)
+      public_suffix (>= 2.0.2, < 5.0)
     bibmarkdown (2.0.0)
       citeproc-ruby
       csl-styles
@@ -102,7 +102,7 @@ GEM
     pry (0.12.2)
       coderay (~> 1.1.0)
       method_source (~> 0.9.0)
-    public_suffix (3.0.3)
+    public_suffix (4.0.6)
     rack (1.6.11)
     rack-livereload (0.3.17)
       rack
